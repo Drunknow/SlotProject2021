@@ -9,6 +9,8 @@
 
 2021 年度 RCC プロジェクト活動
 
+![パチンコ，パチスロは適度に楽しむ遊びです](https://pbs.twimg.com/media/ERJXeUlU0AIhjlR.png)
+
 ## 開発環境
 
 - Unity 2020.3.10f1 LTS
