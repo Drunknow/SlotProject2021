@@ -9,5 +9,6 @@ namespace SlotPriject.TakiExample
     interface IReelStartable
     {
         public void StartReel();
+        public void SetStopEvent(Action action);
     }
 }

@@ -26,7 +26,8 @@ namespace SlotPriject.TakiExample
             }
         }
 
-        [SerializeField] GameObject[] Reels;
+        [SerializeField] GameObject[] Reels;//リールへの参照
+        int stopedReelCount;//止まっているリールのカウント。
 
 
         /// <summary>
@@ -37,8 +38,23 @@ namespace SlotPriject.TakiExample
             for(int i = 0; i < Reels.Length; i++)
             {
                 Reels[i].GetComponent<IReelStartable>().StartReel();
+                Reels[i].GetComponent<IReelStartable>().SetStopEvent(StopOneReel);
+            }
+            stopedReelCount = 0;//全てのリールは回り始める
+        }
+
+        void StopOneReel()
+        {
+            //止まっている数を+1する
+            stopedReelCount = stopedReelCount + 1;
+
+            //もし、止まっているリールの数が参照の数といっしょなら、神から受け取ったイベントを発火する。
+            if(stopedReelCount == Reels.Length)
+            {
+                allReelStopEvent();
             }
         }
+
 
 
         

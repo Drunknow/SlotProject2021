@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,10 @@ namespace SlotPriject.TakiExample
         ReelState reelState;
 
 
+        //リールマネージャーからイベントを受け取るのだ。
+        //具体的には、リールを止めることに成功した際に発火すべき関数。
+        Action reelStopEvent;
+
         /// <summary>
         /// 自身が参照しているリールを止める関数
         /// </summary>
@@ -26,6 +31,7 @@ namespace SlotPriject.TakiExample
             if(reelState == ReelState.Roll)
             {
                 Debug.Log("リールを止めました。");
+                reelStopEvent();//マネージャーから受け取ったイベントを発火
                 reelState = ReelState.Stop;
             }
             else
@@ -49,6 +55,11 @@ namespace SlotPriject.TakiExample
                 reelState = ReelState.Roll;
 
             }
+        }
+
+        public void SetStopEvent(Action action)
+        {
+            reelStopEvent = action;
         }
     }
 }
