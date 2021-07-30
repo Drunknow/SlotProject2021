@@ -37,9 +37,32 @@ namespace SlotPriject.TakiExample
         [SerializeField] ReelsManager reelsManager;//全てのリールを管理する者
 
 
+        ProbabilityState probabilityState;//今の確率状況
+        SlotActivityState activityState;//今何の状態か
+
+
+        private void Awake()
+        {
+            startLever.SlotStartEvent = SlotStartLever;
+        }
 
 
 
+        /// <summary>
+        /// レバーを引いてすろっとがスタートするときの関数。
+        /// </summary>
+        void SlotStartLever()
+        {
+            if (activityState == SlotActivityState.WaitForStart)
+            {
+                Debug.Log("スロットが回り始めました");
+                activityState = SlotActivityState.Roll;//回り始めた状態に変更する
+            }
+            else
+            {
+                Debug.Log("今の状態が" + activityState.ToString() +"のため、回せません。");
+            }
+        }
 
 
     }
