@@ -12,6 +12,9 @@ namespace SlotPriject.TakiExample
         [SerializeField] GameObject reel;
 
 
+        /// <summary>
+        /// 自身が参照するリールの、ストップ関数を呼び出し。
+        /// </summary>
         public void StopReel()
         {
             //インタフェースからリールを止める奴をじっこう。

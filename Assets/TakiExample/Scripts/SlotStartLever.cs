@@ -7,7 +7,10 @@ namespace SlotPriject.TakiExample
 {
     public class SlotStartLever : MonoBehaviour
     {
-        Action slotStartEvent;//神からイベントを受け取るのだ。
+
+        //神からイベントを受け取るのだ。
+        //具体的には、レバーが引かれたときに実行するかんすうが入る。
+        Action slotStartEvent;
 
         //一応プロパティ化
         public Action SlotStartEvent

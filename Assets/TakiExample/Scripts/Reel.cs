@@ -18,6 +18,9 @@ namespace SlotPriject.TakiExample
         ReelState reelState;
 
 
+        /// <summary>
+        /// 自身が参照しているリールを止める関数
+        /// </summary>
         public void StopReel()
         {
             if(reelState == ReelState.Roll)
@@ -31,7 +34,9 @@ namespace SlotPriject.TakiExample
 
             }
         }
-
+        /// <summary>
+        /// 自身が参照しているリールを回す関数
+        /// </summary>
         public void StartReel()
         {
             if (reelState == ReelState.Roll)

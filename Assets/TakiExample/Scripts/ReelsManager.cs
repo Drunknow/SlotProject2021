@@ -11,6 +11,9 @@ namespace SlotPriject.TakiExample
 
         [SerializeField] GameObject[] Reels;
 
+        /// <summary>
+        /// 自身が参照している全てのリールを回す関数
+        /// </summary>
         public void StartAllReel()
         {            
             for(int i = 0; i < Reels.Length; i++)
