@@ -37,11 +37,11 @@ namespace SlotPriject.TakiExample
             if (reelState == ReelState.Roll)
             {
                 Debug.Log("ƒŠ[ƒ‹‚ÍŠù‚É‰ñ‚Á‚Ä‚¢‚Ü‚·");
-                reelState = ReelState.Stop;
             }
             else
             {
                 Debug.Log("ƒŠ[ƒ‹‚Í‰ñ‚èn‚ß‚½");
+                reelState = ReelState.Roll;
 
             }
         }

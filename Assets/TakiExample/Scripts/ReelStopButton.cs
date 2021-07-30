@@ -12,7 +12,7 @@ namespace SlotPriject.TakiExample
         [SerializeField] GameObject reel;
 
 
-        void StopReel()
+        public void StopReel()
         {
             //インタフェースからリールを止める奴をじっこう。
             reel.GetComponent<IReelStopable>().StopReel();
