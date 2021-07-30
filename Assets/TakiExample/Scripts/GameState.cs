@@ -56,6 +56,7 @@ namespace SlotPriject.TakiExample
             if (activityState == SlotActivityState.WaitForStart)
             {
                 Debug.Log("スロットが回り始めました");
+                reelsManager.StartAllReel();//全てのリールを回す
                 activityState = SlotActivityState.Roll;//回り始めた状態に変更する
             }
             else

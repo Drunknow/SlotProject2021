@@ -9,6 +9,13 @@ namespace SlotPriject.TakiExample
     /// </summary>
     public class ReelStopButton : MonoBehaviour
     {
+        [SerializeField] GameObject reel;
 
+
+        void StopReel()
+        {
+            //インタフェースからリールを止める奴をじっこう。
+            reel.GetComponent<IReelStopable>().StopReel();
+        }
     }
 }
