@@ -43,7 +43,8 @@ namespace SlotPriject.TakiExample
 
         private void Awake()
         {
-            startLever.SlotStartEvent = SlotStartLever;
+            startLever.SlotStartEvent = SlotStartLever;//レバーが引かれた際のイベントを指定
+            reelsManager.AllReelStopEvent = CheckReelWhenAllReelStoped;//全てのリールが止まった際のイベントを指定
         }
 
 
@@ -63,6 +64,16 @@ namespace SlotPriject.TakiExample
             {
                 Debug.Log("今の状態が" + activityState.ToString() +"のため、回せません。");
             }
+        }
+
+
+        /// <summary>
+        /// 全てのリールが止まった時に、発火されるべき関数
+        /// </summary>
+        void CheckReelWhenAllReelStoped()
+        {
+            activityState = SlotActivityState.WaitForStart;//とりあえず止まったことにする。
+            Debug.Log("全てのリールが止まり、もう一回レバーを引けます");
         }
 
 
