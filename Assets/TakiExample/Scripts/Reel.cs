@@ -17,7 +17,7 @@ namespace SlotProject.TakiExample
         }
 
         ReelState reelState;
-
+        [SerializeField] ReelRoll[] reelRolls; 
 
         //リールマネージャーからイベントを受け取るのだ。
         //具体的には、リールを止めることに成功した際に発火すべき関数。
