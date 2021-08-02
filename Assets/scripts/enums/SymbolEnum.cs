@@ -1,16 +1,19 @@
-public enum SymbolEnum
+namespace SlotProject
 {
+    public enum SymbolEnum
+    {
 
-    SEVEN,
+        SEVEN,
 
-    FULLHD,
+        FULLHD,
 
-    WATERMELON,
+        WATERMELON,
 
-    BAR,
+        BAR,
 
-    REPLAY,
+        REPLAY,
 
-    CHERRY,
+        CHERRY,
 
+    }
 }
