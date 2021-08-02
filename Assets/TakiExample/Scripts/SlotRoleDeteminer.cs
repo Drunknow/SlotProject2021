@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SlotPriject.TakiExample
+namespace SlotProject.TakiExample
 {
     /// <summary>
     /// スロットが回り始めた瞬間に、どんなやくがそろいうるかを決定する奴

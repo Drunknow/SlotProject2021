@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SlotPriject.TakiExample
+namespace SlotProject.TakiExample
 {
     public class ReelsManager : MonoBehaviour
     {
@@ -12,7 +12,6 @@ namespace SlotPriject.TakiExample
         //神からイベントを受け取るのだ。
         //具体的には、全てのリールが止まった時に発火すべき関数。
         Action allReelStopEvent;
-
         //一応プロパティ化
         public Action AllReelStopEvent
         {

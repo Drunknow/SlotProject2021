@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SlotPriject.TakiExample
+namespace SlotProject.TakiExample
 {
     /// <summary>
     /// スロットの状態を何でも管理しちゃう神クラス。

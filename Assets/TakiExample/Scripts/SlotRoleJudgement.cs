@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SlotPriject.TakiExample
+namespace SlotProject.TakiExample
 {
     /// <summary>
     /// 実際に値を見てどんな役がそろっているか確認する役目を持つ。

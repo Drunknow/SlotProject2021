@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SlotPriject.TakiExample
+namespace SlotProject.TakiExample
 {
     /// <summary>
     /// ‰ñ“]‚·‚éƒŠ[ƒ‹‚ğˆ—‚µ‚Ü‚·B
@@ -61,5 +61,8 @@ namespace SlotPriject.TakiExample
         {
             reelStopEvent = action;
         }
+
+
+
     }
 }

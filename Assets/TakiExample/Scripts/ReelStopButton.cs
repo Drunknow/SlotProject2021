@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SlotPriject.TakiExample
+namespace SlotProject.TakiExample
 {
     /// <summary>
     /// ƒŠ[ƒ‹‚ğ~‚ß‚é‚½‚ß‚¾‚¯‚É‘¶İ‚·‚éƒ{ƒ^ƒ“
