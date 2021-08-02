@@ -1,79 +1,79 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace SlotProject.TakiExample
 {
     /// <summary>
-    /// ƒXƒƒbƒg‚Ìó‘Ô‚ğ‰½‚Å‚àŠÇ—‚µ‚¿‚á‚¤_ƒNƒ‰ƒXB
-    /// —lX‚ÈƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğÀÛ‚É‚¿AŠO•”ƒCƒ“ƒXƒ^ƒ“ƒX‚©‚ç‚ÌƒƒbƒZ[ƒW‚Æ©g‚Ìó‘Ô‚É‰‚¶‚ÄA
-    /// —lX‚È“®ì‚ğ‚·‚é–½—ß‚ğ‚·‚éB
-    /// ‚È‚¨A–ñ‘©‚³‚ê‚½_ƒNƒ‰ƒXB
+    /// ã‚¹ãƒ­ãƒƒãƒˆã®çŠ¶æ…‹ã‚’ä½•ã§ã‚‚ç®¡ç†ã—ã¡ã‚ƒã†ç¥ã‚¯ãƒ©ã‚¹ã€‚
+    /// æ§˜ã€…ãªã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å®Ÿéš›ã«æŒã¡ã€å¤–éƒ¨ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‹ã‚‰ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¨è‡ªèº«ã®çŠ¶æ…‹ã«å¿œã˜ã¦ã€
+    /// æ§˜ã€…ãªå‹•ä½œã‚’ã™ã‚‹å‘½ä»¤ã‚’ã™ã‚‹ã€‚
+    /// ãªãŠã€ç´„æŸã•ã‚ŒãŸç¥ã‚¯ãƒ©ã‚¹ã€‚
     /// </summary>
     public class GameState : MonoBehaviour
     {
         /// <summary>
-        /// ƒXƒƒbƒg‚Ì“–‚½‚éŠm—¦‚Ìó‘Ô
+        /// ã‚¹ãƒ­ãƒƒãƒˆã®å½“ãŸã‚‹ç¢ºç‡ã®çŠ¶æ…‹
         /// </summary>
         enum ProbabilityState
         {
-            Normal,//’Êíó‘Ô
-            Fluctuation,//‚¢‚í‚ä‚éŠm—¦•Ï“®ó‘Ô
+            Normal,//é€šå¸¸çŠ¶æ…‹
+            Fluctuation,//ã„ã‚ã‚†ã‚‹ç¢ºç‡å¤‰å‹•çŠ¶æ…‹
         }
 
         /// <summary>
-        /// ƒXƒƒbƒg‚Ì“®ìó‘Ô
+        /// ã‚¹ãƒ­ãƒƒãƒˆã®å‹•ä½œçŠ¶æ…‹
         /// </summary>
         enum SlotActivityState
         {
-            WaitForStart,//Œ»İ“®‚¢‚Ä‚¨‚ç‚¸AƒŒƒo[‚©‚ç‚ÌƒXƒ^[ƒg“ü—Í‘Ò‚¿
-            Roll,//‚¢‚¸‚ê‚©‚ÌƒŠ[ƒ‹‚ª‰ñ‚Á‚Ä‚¢‚éó‘Ô
-            Performance,//‚¨‹à‚ğ•¥‚¤‚È‚Ç‚Ì‰‰o’†
+            WaitForStart,//ç¾åœ¨å‹•ã„ã¦ãŠã‚‰ãšã€ãƒ¬ãƒãƒ¼ã‹ã‚‰ã®ã‚¹ã‚¿ãƒ¼ãƒˆå…¥åŠ›å¾…ã¡
+            Roll,//ã„ãšã‚Œã‹ã®ãƒªãƒ¼ãƒ«ãŒå›ã£ã¦ã„ã‚‹çŠ¶æ…‹
+            Performance,//ãŠé‡‘ã‚’æ‰•ã†ãªã©ã®æ¼”å‡ºä¸­
         }
 
         SlotRoleDeteminer slotRoleDeteminer;
         SlotRoleJudgement slotRoleJudgement;
         [SerializeField]SlotStartLever startLever;
-        [SerializeField] ReelsManager reelsManager;//‘S‚Ä‚ÌƒŠ[ƒ‹‚ğŠÇ—‚·‚éÒ
+        [SerializeField] ReelsManager reelsManager;//å…¨ã¦ã®ãƒªãƒ¼ãƒ«ã‚’ç®¡ç†ã™ã‚‹è€…
 
 
-        ProbabilityState probabilityState;//¡‚ÌŠm—¦ó‹µ
-        SlotActivityState activityState;//¡‰½‚Ìó‘Ô‚©
+        ProbabilityState probabilityState;//ä»Šã®ç¢ºç‡çŠ¶æ³
+        SlotActivityState activityState;//ä»Šä½•ã®çŠ¶æ…‹ã‹
 
 
         private void Awake()
         {
-            startLever.SlotStartEvent = SlotStartLever;//ƒŒƒo[‚ªˆø‚©‚ê‚½Û‚ÌƒCƒxƒ“ƒg‚ğw’è
-            reelsManager.AllReelStopEvent = CheckReelWhenAllReelStoped;//‘S‚Ä‚ÌƒŠ[ƒ‹‚ª~‚Ü‚Á‚½Û‚ÌƒCƒxƒ“ƒg‚ğw’è
+            startLever.SlotStartEvent = SlotStartLever;//ãƒ¬ãƒãƒ¼ãŒå¼•ã‹ã‚ŒãŸéš›ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’æŒ‡å®š
+            reelsManager.AllReelStopEvent = CheckReelWhenAllReelStoped;//å…¨ã¦ã®ãƒªãƒ¼ãƒ«ãŒæ­¢ã¾ã£ãŸéš›ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’æŒ‡å®š
         }
 
 
 
         /// <summary>
-        /// ƒŒƒo[‚ğˆø‚¢‚Ä‚·‚ë‚Á‚Æ‚ªƒXƒ^[ƒg‚·‚é‚Æ‚«‚ÌŠÖ”B
+        /// ãƒ¬ãƒãƒ¼ã‚’å¼•ã„ã¦ã™ã‚ã£ã¨ãŒã‚¹ã‚¿ãƒ¼ãƒˆã™ã‚‹ã¨ãã®é–¢æ•°ã€‚
         /// </summary>
         void SlotStartLever()
         {
             if (activityState == SlotActivityState.WaitForStart)
             {
-                Debug.Log("ƒXƒƒbƒg‚ª‰ñ‚èn‚ß‚Ü‚µ‚½");
-                reelsManager.StartAllReel();//‘S‚Ä‚ÌƒŠ[ƒ‹‚ğ‰ñ‚·
-                activityState = SlotActivityState.Roll;//‰ñ‚èn‚ß‚½ó‘Ô‚É•ÏX‚·‚é
+                Debug.Log("ã‚¹ãƒ­ãƒƒãƒˆãŒå›ã‚Šå§‹ã‚ã¾ã—ãŸ");
+                reelsManager.StartAllReel();//å…¨ã¦ã®ãƒªãƒ¼ãƒ«ã‚’å›ã™
+                activityState = SlotActivityState.Roll;//å›ã‚Šå§‹ã‚ãŸçŠ¶æ…‹ã«å¤‰æ›´ã™ã‚‹
             }
             else
             {
-                Debug.Log("¡‚Ìó‘Ô‚ª" + activityState.ToString() +"‚Ì‚½‚ßA‰ñ‚¹‚Ü‚¹‚ñB");
+                Debug.Log("ä»Šã®çŠ¶æ…‹ãŒ" + activityState.ToString() +"ã®ãŸã‚ã€å›ã›ã¾ã›ã‚“ã€‚");
             }
         }
 
 
         /// <summary>
-        /// ‘S‚Ä‚ÌƒŠ[ƒ‹‚ª~‚Ü‚Á‚½‚ÉA”­‰Î‚³‚ê‚é‚×‚«ŠÖ”
+        /// å…¨ã¦ã®ãƒªãƒ¼ãƒ«ãŒæ­¢ã¾ã£ãŸæ™‚ã«ã€ç™ºç«ã•ã‚Œã‚‹ã¹ãé–¢æ•°
         /// </summary>
         void CheckReelWhenAllReelStoped()
         {
-            activityState = SlotActivityState.WaitForStart;//‚Æ‚è‚ ‚¦‚¸~‚Ü‚Á‚½‚±‚Æ‚É‚·‚éB
-            Debug.Log("‘S‚Ä‚ÌƒŠ[ƒ‹‚ª~‚Ü‚èA‚à‚¤ˆê‰ñƒŒƒo[‚ğˆø‚¯‚Ü‚·");
+            activityState = SlotActivityState.WaitForStart;//ã¨ã‚Šã‚ãˆãšæ­¢ã¾ã£ãŸã“ã¨ã«ã™ã‚‹ã€‚
+            Debug.Log("å…¨ã¦ã®ãƒªãƒ¼ãƒ«ãŒæ­¢ã¾ã‚Šã€ã‚‚ã†ä¸€å›ãƒ¬ãƒãƒ¼ã‚’å¼•ã‘ã¾ã™");
         }
 
 

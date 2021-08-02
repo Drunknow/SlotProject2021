@@ -17,7 +17,7 @@ namespace SlotProject.TakiExample
         }
 
         ReelState reelState;
-
+        [SerializeField] ReelRoll[] reelRolls; 
 
         //リールマネージャーからイベントを受け取るのだ。
         //具体的には、リールを止めることに成功した際に発火すべき関数。
@@ -33,6 +33,10 @@ namespace SlotProject.TakiExample
                 Debug.Log("リールを止めました。");
                 reelStopEvent();//マネージャーから受け取ったイベントを発火
                 reelState = ReelState.Stop;
+                for(int i = 0; i < reelRolls.Length; i++)
+                {
+                    reelRolls[i].isRolling = false;
+                }
             }
             else
             {
@@ -53,7 +57,10 @@ namespace SlotProject.TakiExample
             {
                 Debug.Log("リールは回り始めた");
                 reelState = ReelState.Roll;
-
+                for (int i = 0; i < reelRolls.Length; i++)
+                {
+                    reelRolls[i].isRolling = true;
+                }
             }
         }
 
