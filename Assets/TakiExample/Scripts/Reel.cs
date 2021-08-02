@@ -33,6 +33,10 @@ namespace SlotProject.TakiExample
                 Debug.Log("リールを止めました。");
                 reelStopEvent();//マネージャーから受け取ったイベントを発火
                 reelState = ReelState.Stop;
+                for(int i = 0; i < reelRolls.Length; i++)
+                {
+                    reelRolls[i].isRolling = false;
+                }
             }
             else
             {
@@ -53,7 +57,10 @@ namespace SlotProject.TakiExample
             {
                 Debug.Log("リールは回り始めた");
                 reelState = ReelState.Roll;
-
+                for (int i = 0; i < reelRolls.Length; i++)
+                {
+                    reelRolls[i].isRolling = true;
+                }
             }
         }
 

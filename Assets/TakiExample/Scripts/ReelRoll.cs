@@ -20,7 +20,7 @@ public class ReelRoll : MonoBehaviour
         if (isRolling)
         {
             float temp = TF.position.y;
-            temp = (temp + 0.1f+1) % 2f-1;
+            temp = ((temp - 0.1f-1)+4) % 2f-1;//クソコード部分
             TF.position = new Vector3(TF.position.x, temp, TF.position.z);
         }
         else
