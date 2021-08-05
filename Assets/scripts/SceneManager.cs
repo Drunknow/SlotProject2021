@@ -27,13 +27,13 @@ namespace SlotProject
                 case ButtonType.LEVER:
                     this.HandlePullLever();
                     break;
-                case ButtonType.LEFT_BUTTON:
+                case ButtonType.LEFT:
                     this.HandlePushLeftButton();
                     break;
-                case ButtonType.CENTER_BUTTON:
+                case ButtonType.CENTER:
                     this.HandlePushCenterButton();
                     break;
-                case ButtonType.RIGHT_BUTTON:
+                case ButtonType.RIGHT:
                     this.HandlePushRightButton();
                     break;
             }

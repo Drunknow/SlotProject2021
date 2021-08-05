@@ -6,11 +6,11 @@ namespace SlotProject
 
         LEVER,
 
-        LEFT_BUTTON,
+        LEFT,
 
-        CENTER_BUTTON,
+        CENTER,
 
-        RIGHT_BUTTON,
+        RIGHT,
 
     }
 
