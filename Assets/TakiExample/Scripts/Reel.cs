@@ -18,12 +18,27 @@ namespace SlotProject.TakiExample
         }
 
         ReelState reelState;
-        [SerializeField] ReelRoll[] reelRolls;//3つの表示されるやつら
-        float realPos;//リールがどの程度回ったかを表す。
+        ReelRoll[] reelRolls;//3つの表示されるやつら
+
+        [SerializeField] float topY;//リールの一番上となる座標
+        [SerializeField] float bottomY;//リールの底となる座標
 
         //リールマネージャーからイベントを受け取るのだ。
         //具体的には、リールを止めることに成功した際に発火すべき関数。
         Action reelStopEvent;
+
+        void Start()
+        {
+
+            reelRolls = new ReelRoll[transform.childCount];
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                reelRolls[i] = transform.GetChild(i).GetComponent<ReelRoll>();
+                reelRolls[i].topY = topY;
+                reelRolls[i].bottomY = bottomY;
+                reelRolls[i].symbolCount = reelRolls.Length;
+            }
+        }
 
         /// <summary>
         /// 自身が参照しているリールを止める関数

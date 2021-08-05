@@ -5,7 +5,6 @@ using UnityEngine;
 public class ReelRoll : MonoBehaviour
 {
 
-    const float DISTANT = 2f;
     const float ROLL_ONE_FLAME = 0.1f;
 
     Transform TF;
@@ -16,7 +15,10 @@ public class ReelRoll : MonoBehaviour
     [SerializeField] int indicateReelLocation;//これは、リールの図柄の為に利用しているものです。
     [SerializeField]int reelIndexOffset;//何回分ずれたか
 
-    [SerializeField] float bottomY;//スロットの底となるy座標
+
+    public float topY;//スロットの天井となるy座標
+    public float bottomY;//スロットの底となるy座標
+    public int symbolCount;//いくつのシンボルをまとめて扱っているか
 
 
     [SerializeField] Sprite[] sprites;
@@ -37,20 +39,22 @@ public class ReelRoll : MonoBehaviour
         //図柄の場所をずらす
         if (isRolling)
         {
-            
 
-            if(TF.position.y - ROLL_ONE_FLAME < bottomY)
+            //図柄のy座標を移動する
+            float nextPositionY = TF.position.y - ROLL_ONE_FLAME;
+            TF.position = new Vector3(TF.position.x, nextPositionY, TF.position.z);
+
+            //思ったよりも下に行くようなら画像を変えて、一番上にもってく
+            if (TF.position.y < bottomY)
             {
-                reelIndexOffset = (reelIndexOffset + 3) % reelZugara.reel.Length;
-
+                reelIndexOffset = (reelIndexOffset + symbolCount) % reelZugara.reel.Length;
                 int nextSymbolIndex = (reelIndexOffset + initialReelIndex) % reelZugara.reel.Length;
-
                 spriteRenderer.sprite = sprites[reelZugara.reel[nextSymbolIndex]];
 
+                TF.position = new Vector3(TF.position.x, topY, TF.position.z);
+
             }
-            //図柄のy座標を移動する
-            float nextPositionY = ((TF.position.y - ROLL_ONE_FLAME - 1)+4) % DISTANT - 1;
-            TF.position = new Vector3(TF.position.x, nextPositionY, TF.position.z);
+
 
 
 
