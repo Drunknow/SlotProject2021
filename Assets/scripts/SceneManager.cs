@@ -31,10 +31,11 @@ namespace SlotProject
 
         public void Start()
         {
-            // レバーを押した時の動作を紐付け
+            // ボタンを押した時に実行するメソッドを設定
             this.GetComponent<Button>().onClick.AddListener(HandlePushButton);
         }
 
+        // 何かしらのボタンが押された
         public void HandlePushButton()
         {
             switch (this.buttonType)
@@ -54,26 +55,26 @@ namespace SlotProject
             }
         }
 
-        // レバーを下げた時
+        // レバーを下げた
         public void HandlePullLever()
         {
             Debug.Log("レバーだよ");
             this.reelService.startSpinning(0);
         }
 
-        // 左ボタンを押した時
+        // 左ボタンを押した
         public void HandlePushLeftButton()
         {
             Debug.Log("左ボタンだよ");
         }
 
-        // 中央ボタンを押した時
+        // 中央ボタンを押した
         public void HandlePushCenterButton()
         {
             Debug.Log("中央ボタンだよ");
         }
 
-        // 右ボタンを押した時
+        // 右ボタンを押した
         public void HandlePushRightButton()
         {
             Debug.Log("右ボタンだよ");
