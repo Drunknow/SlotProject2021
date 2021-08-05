@@ -7,19 +7,6 @@ namespace SlotProject
     public class SceneManager : MonoBehaviour
     {
 
-        private enum ButtonType
-        {
-
-            LEVER,
-
-            LEFT_BUTTON,
-
-            CENTER_BUTTON,
-
-            RIGHT_BUTTON,
-
-        }
-
         private ReelService reelService;
 
         [SerializeField] ButtonType buttonType;
