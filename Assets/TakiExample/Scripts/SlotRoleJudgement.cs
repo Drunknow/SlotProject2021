@@ -22,9 +22,9 @@ namespace SlotProject.TakiExample
 
             //連想配列的な発想で、めんどくさい処理をfor分に落とし込む。
             //実際はすべてのリールを管理するクラスを作って、あヴぇくんの言うようにforeachを用いると良さそうです。
-            int[] reel1Index = {1};
-            int[] reel2Index = {1};
-            int[] reel3Index = {1};
+            int[] reel1Index = {2};
+            int[] reel2Index = {2};
+            int[] reel3Index = {2};
 
             for(int i = 0; i < reel1Index.Length; i++)
             {
