@@ -50,12 +50,34 @@ namespace SlotProject.TakiExample
             //もし、止まっているリールの数が参照の数といっしょなら、神から受け取ったイベントを発火する。
             if(stopedReelCount == Reels.Length)
             {
+                //まずはすべてのリールの情報を取得する。
+                GetCurrentZugara();
+
+                //
+
+                //最後に受け取った関数を発火する。
                 allReelStopEvent();
             }
         }
 
 
+        public int[][] GetCurrentZugara()
+        {
+            int[][] reals = new int[3][];
+            reals[0] = new int[3];
+            reals[1] = new int[3];
+            reals[2] = new int[3];
 
+            for(int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    reals[i][j] = Reels[i].GetComponent<Reel>().GetAllReel()[j];
+                }
+            }
+
+            return reals;
+        }
         
 
     }
