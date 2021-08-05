@@ -12,8 +12,8 @@ public class ReelRoll : MonoBehaviour
     public bool isRolling;
     ReelZugara reelZugara;
 
-    [SerializeField] int initialRealIndex;
-    [SerializeField] float pos;
+    [SerializeField] int initialReelIndex;
+    [SerializeField] float indicateReelLocation;//これは、リールの図柄の為に利用しているものです。
 
     [SerializeField] Sprite[] sprites;
 
@@ -30,15 +30,18 @@ public class ReelRoll : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //図柄の場所をずらす
         if (isRolling)
         {
-            pos = (pos + ROLL_ONE_FLAME) % (reelZugara.real.Length * 2);
-            float temp = TF.position.y;
-            temp = ((temp - ROLL_ONE_FLAME - 1)+4) % 2f-1;//クソコード部分
-            TF.position = new Vector3(TF.position.x, temp, TF.position.z);
+            
+            //図柄のy座標を移動する
+            float nextPositionY = ((TF.position.y - ROLL_ONE_FLAME - 1)+4) % DISTANT - 1;
+            TF.position = new Vector3(TF.position.x, nextPositionY, TF.position.z);
 
-            int tempIndex = (Mathf.FloorToInt(pos/2) + initialRealIndex) % reelZugara.real.Length;
-            spriteRenderer.sprite = sprites[reelZugara.real[tempIndex]];
+            //実際に図形の場所をずらす
+            indicateReelLocation = (indicateReelLocation + ROLL_ONE_FLAME) % (reelZugara.reel.Length * DISTANT);
+            int nextSymbolIndex = (Mathf.FloorToInt(indicateReelLocation/2) + initialReelIndex) % reelZugara.reel.Length;
+            spriteRenderer.sprite = sprites[reelZugara.reel[nextSymbolIndex]];
 
         }
         else
@@ -52,8 +55,8 @@ public class ReelRoll : MonoBehaviour
     /// </summary>
     public int GetZugara()
     {
-        int tempIndex = (Mathf.FloorToInt(pos/2) + initialRealIndex) % reelZugara.real.Length;
-        return reelZugara.real[tempIndex];
+        int tempIndex = (Mathf.FloorToInt(indicateReelLocation/2) + initialReelIndex) % reelZugara.reel.Length;
+        return reelZugara.reel[tempIndex];
     }
 
 }
