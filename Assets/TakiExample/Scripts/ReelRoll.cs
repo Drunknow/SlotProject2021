@@ -43,7 +43,17 @@ public class ReelRoll : MonoBehaviour
         }
         else
         {
-
+            
         }
     }
+
+    /// <summary>
+    /// 図形をゲットする関数です
+    /// </summary>
+    public int GetZugara()
+    {
+        int tempIndex = (Mathf.FloorToInt(pos/2) + initialRealIndex) % reelZugara.real.Length;
+        return reelZugara.real[tempIndex];
+    }
+
 }

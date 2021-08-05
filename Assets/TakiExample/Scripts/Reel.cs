@@ -71,6 +71,20 @@ namespace SlotProject.TakiExample
         }
 
 
+        
+        public int[] GetAllReel()
+        {
+
+            SlotRoleJudgement a = new SlotRoleJudgement();
+
+            int[] returnArray = new int[reelRolls.Length];
+            for(int i = 0; i < reelRolls.Length; i++)
+            {
+                returnArray[i] = reelRolls[i].GetZugara();
+            }
+            return returnArray;
+        }
+
 
     }
 }
