@@ -13,7 +13,11 @@ public class ReelRoll : MonoBehaviour
     ReelZugara reelZugara;
 
     [SerializeField] int initialReelIndex;
-    [SerializeField] float indicateReelLocation;//これは、リールの図柄の為に利用しているものです。
+    [SerializeField] int indicateReelLocation;//これは、リールの図柄の為に利用しているものです。
+    [SerializeField]int reelIndexOffset;//何回分ずれたか
+
+    [SerializeField] float bottomY;//スロットの底となるy座標
+
 
     [SerializeField] Sprite[] sprites;
 
@@ -34,14 +38,21 @@ public class ReelRoll : MonoBehaviour
         if (isRolling)
         {
             
+
+            if(TF.position.y - ROLL_ONE_FLAME < bottomY)
+            {
+                reelIndexOffset = (reelIndexOffset + 3) % reelZugara.reel.Length;
+
+                int nextSymbolIndex = (reelIndexOffset + initialReelIndex) % reelZugara.reel.Length;
+
+                spriteRenderer.sprite = sprites[reelZugara.reel[nextSymbolIndex]];
+
+            }
             //図柄のy座標を移動する
             float nextPositionY = ((TF.position.y - ROLL_ONE_FLAME - 1)+4) % DISTANT - 1;
             TF.position = new Vector3(TF.position.x, nextPositionY, TF.position.z);
 
-            //実際に図形の場所をずらす
-            indicateReelLocation = (indicateReelLocation + ROLL_ONE_FLAME) % (reelZugara.reel.Length * DISTANT);
-            int nextSymbolIndex = (Mathf.FloorToInt(indicateReelLocation/2) + initialReelIndex) % reelZugara.reel.Length;
-            spriteRenderer.sprite = sprites[reelZugara.reel[nextSymbolIndex]];
+
 
         }
         else
@@ -55,8 +66,8 @@ public class ReelRoll : MonoBehaviour
     /// </summary>
     public int GetZugara()
     {
-        int tempIndex = (Mathf.FloorToInt(indicateReelLocation/2) + initialReelIndex) % reelZugara.reel.Length;
-        return reelZugara.reel[tempIndex];
+        int symbolIndex = (reelIndexOffset + initialReelIndex) % reelZugara.reel.Length;
+        return reelZugara.reel[symbolIndex];
     }
 
 }

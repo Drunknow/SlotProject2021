@@ -1021,6 +1021,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startLever: {fileID: 458027305}
   reelsManager: {fileID: 1723700887}
+  coinText: {fileID: 1899084155}
 --- !u!4 &1428273615
 Transform:
   m_ObjectHideFlags: 0
@@ -1634,6 +1635,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1723700888}
     m_Modifications:
+    - target: {fileID: 4774107463566406609, guid: 17acba2d5b7751f4da6881510387b7ae, type: 3}
+      propertyPath: indicateReelLocation
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8498888446728791172, guid: 17acba2d5b7751f4da6881510387b7ae, type: 3}
       propertyPath: m_Name
       value: Reel1
