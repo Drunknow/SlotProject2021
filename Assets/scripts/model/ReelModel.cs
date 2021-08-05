@@ -28,24 +28,24 @@ namespace SlotProject
         }
 
         // 図柄一覧を取得
-        public SymbolType[] getSymbols()
+        public SymbolType[] GetSymbols()
         {
             return this.symbols;
         }
 
         // 図柄の数を取得
-        public int getLength()
+        public int GetLength()
         {
             return this.symbols.Length;
         }
 
         // 回転開始
-        public void start() {
+        public void Start() {
             this.isSpinning = true;
         }
 
         // 回転停止
-        public void stop() {
+        public void Stop() {
             this.isSpinning = false;
         }
 
