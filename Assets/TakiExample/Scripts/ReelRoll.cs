@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,12 +14,12 @@ public class ReelRoll : MonoBehaviour
 
     [SerializeField] int initialReelIndex;
     [SerializeField] int indicateReelLocation;//これは、リールの図柄の為に利用しているものです。
-    [SerializeField]int reelIndexOffset;//何回分ずれたか
+    int reelIndexOffset;//何回分ずれたか
 
 
-    public float topY;//スロットの天井となるy座標
-    public float bottomY;//スロットの底となるy座標
-    public int symbolCount;//いくつのシンボルをまとめて扱っているか
+    [NonSerialized]public float topY;//スロットの天井となるy座標
+    [NonSerialized] public float bottomY;//スロットの底となるy座標
+    [NonSerialized] public int symbolCount;//いくつのシンボルをまとめて扱っているか
 
 
     [SerializeField] Sprite[] sprites;
