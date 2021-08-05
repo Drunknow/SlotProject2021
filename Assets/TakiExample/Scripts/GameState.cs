@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace SlotProject.TakiExample
 {
@@ -12,6 +13,9 @@ namespace SlotProject.TakiExample
     /// </summary>
     public class GameState : MonoBehaviour
     {
+
+        int coin;//所持コインの数
+
         /// <summary>
         /// スロットの当たる確率の状態
         /// </summary>
@@ -35,6 +39,8 @@ namespace SlotProject.TakiExample
         SlotRoleJudgement slotRoleJudgement;
         [SerializeField]SlotStartLever startLever;
         [SerializeField] ReelsManager reelsManager;//全てのリールを管理する者
+
+        [SerializeField] Text coinText;
 
 
         ProbabilityState probabilityState;//今の確率状況
@@ -70,12 +76,22 @@ namespace SlotProject.TakiExample
         /// <summary>
         /// 全てのリールが止まった時に、発火されるべき関数
         /// </summary>
-        void CheckReelWhenAllReelStoped()
+        void CheckReelWhenAllReelStoped(int coin)
         {
             activityState = SlotActivityState.WaitForStart;//とりあえず止まったことにする。
+            ShowCoinCount(coin);
             Debug.Log("全てのリールが止まり、もう一回レバーを引けます");
         }
 
+
+        /// <summary>
+        /// コインの枚数をテキストに出力する
+        /// </summary>
+        /// <param name="coin"></param>
+        void ShowCoinCount(int coin)
+        {
+            coinText.text = "Coin" + coin;
+        }
 
     }
 }

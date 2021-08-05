@@ -96,8 +96,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRolling: 0
-  initialRealIndex: 0
-  pos: 0
+  initialReelIndex: 0
+  indicateReelLocation: 0
   sprites:
   - {fileID: 21300000, guid: ca30fb576492e4bdc820231f11fc4c56, type: 3}
   - {fileID: 21300000, guid: 283b1ae10b50c4058b1eb543454f41ba, type: 3}
@@ -202,8 +202,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRolling: 0
-  initialRealIndex: 2
-  pos: 0
+  initialReelIndex: 2
+  indicateReelLocation: 0
   sprites:
   - {fileID: 21300000, guid: ca30fb576492e4bdc820231f11fc4c56, type: 3}
   - {fileID: 21300000, guid: 283b1ae10b50c4058b1eb543454f41ba, type: 3}
@@ -308,8 +308,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRolling: 0
-  initialRealIndex: 1
-  pos: 0
+  initialReelIndex: 1
+  indicateReelLocation: 0
   sprites:
   - {fileID: 21300000, guid: ca30fb576492e4bdc820231f11fc4c56, type: 3}
   - {fileID: 21300000, guid: 283b1ae10b50c4058b1eb543454f41ba, type: 3}

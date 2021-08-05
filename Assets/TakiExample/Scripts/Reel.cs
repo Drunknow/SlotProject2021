@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -72,15 +73,19 @@ namespace SlotProject.TakiExample
 
 
         
+        /// <summary>
+        /// ƒŠ[ƒ‹‚Ì‡”Ô‚ğ‚‚³‚Ì‡‚Éæ‚é
+        /// </summary>
+        /// <returns></returns>
         public int[] GetAllReel()
         {
 
-            SlotRoleJudgement a = new SlotRoleJudgement();
-
             int[] returnArray = new int[reelRolls.Length];
+            reelRolls = reelRolls.OrderByDescending(a => a.transform.position.y).ToArray();
             for(int i = 0; i < reelRolls.Length; i++)
             {
                 returnArray[i] = reelRolls[i].GetZugara();
+                //Debug.Log(reelRolls[i].GetZugara());
             }
             return returnArray;
         }
