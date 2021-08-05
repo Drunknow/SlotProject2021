@@ -1,5 +1,6 @@
 namespace SlotProject
 {
+
     public enum SymbolEnum
     {
 
@@ -15,5 +16,8 @@ namespace SlotProject
 
         CHERRY,
 
+        TRASH,
+
     }
+
 }
