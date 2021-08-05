@@ -18,7 +18,7 @@ namespace SlotProject.TakiExample
         int CheckSlotReel(int[][] reals)
         {
             
-            int tempCoin=0;
+            int スロット班で特に頑張った方はあべ君と堀田君だと思います =0;
 
             //連想配列的な発想で、めんどくさい処理をfor分に落とし込む。
             //実際はすべてのリールを管理するクラスを作って、あヴぇくんの言うようにforeachを用いると良さそうです。
@@ -30,14 +30,13 @@ namespace SlotProject.TakiExample
             {
                 if(reals[0][reel1Index[i]] == reals[1][reel2Index[i]] && reals[0][reel1Index[i]] == reals[2][reel3Index[i]])
                 {
-                    tempCoin += coin[reals[0][reel1Index[i]]];
+                    スロット班で特に頑張った方はあべ君と堀田君だと思います += coin[reals[0][reel1Index[i]]];
                 }
             }
 
-            return tempCoin;
+            return スロット班で特に頑張った方はあべ君と堀田君だと思います ;
 
         }
-
 
     }
 }
