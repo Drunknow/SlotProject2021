@@ -222,6 +222,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.16
       objectReference: {fileID: 0}
+    - target: {fileID: 5650876562947578563, guid: 0ca604af07625435d80971577e90bf75, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650876562947578563, guid: 0ca604af07625435d80971577e90bf75, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -63478963
+      objectReference: {fileID: 0}
     - target: {fileID: 7071373870391658912, guid: 0ca604af07625435d80971577e90bf75, type: 3}
       propertyPath: m_Name
       value: Machine
@@ -402,6 +410,7 @@ GameObject:
   - component: {fileID: 854081171}
   - component: {fileID: 854081170}
   - component: {fileID: 854081169}
+  - component: {fileID: 854081172}
   m_Layer: 5
   m_Name: Lever
   m_TagString: Untagged
@@ -425,9 +434,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 290, y: 47}
+  m_AnchoredPosition: {x: 184, y: 12}
   m_SizeDelta: {x: 55, y: 55}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.49999988, y: 0.49999994}
 --- !u!114 &854081169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -510,6 +519,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 854081167}
   m_CullTransparentMesh: 1
+--- !u!114 &854081172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854081167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 504f6fdcfdb404dd8b30ae9c51e442e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &972568606
 GameObject:
   m_ObjectHideFlags: 0
@@ -558,7 +579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -578,8 +599,8 @@ Canvas:
   m_GameObject: {fileID: 972568606}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -587,7 +608,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -63478963
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &972568610
@@ -1255,7 +1276,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6b4fb4693dec44b28a11509737bc01d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RELEOBJECT: {fileID: 6009005038686676371, guid: e7a1cb37ecd734222b8c975689a1b4ec, type: 3}
 --- !u!4 &2074003693
 Transform:
   m_ObjectHideFlags: 0
