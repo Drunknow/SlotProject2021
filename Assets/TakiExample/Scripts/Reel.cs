@@ -17,7 +17,8 @@ namespace SlotProject.TakiExample
         }
 
         ReelState reelState;
-        [SerializeField] ReelRoll[] reelRolls; 
+        [SerializeField] ReelRoll[] reelRolls;//3つの表示されるやつら
+        float realPos;//リールがどの程度回ったかを表す。
 
         //リールマネージャーからイベントを受け取るのだ。
         //具体的には、リールを止めることに成功した際に発火すべき関数。
