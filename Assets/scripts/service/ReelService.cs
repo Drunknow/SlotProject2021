@@ -3,7 +3,7 @@ using UnityEngine;
 namespace SlotProject
 {
 
-    public class ReelService: MonoBehaviour
+    public class ReelService : MonoBehaviour
     {
 
         [SerializeField] ReelFactory reelFactory;
@@ -19,6 +19,15 @@ namespace SlotProject
                 reelFactory.create(ReelTypeEnum.CENTER),
                 reelFactory.create(ReelTypeEnum.RIGHT),
             };
+
+            // 初期画面の図柄を表示
+            foreach (ReelModel reel in this.reels)
+            {
+                SymbolTypeEnum[] displayedSymbols = reel.GetSymbols();
+                reel.publishSymbolSprite(this.symbolFactory.create(displayedSymbols[0]), DisplayedSymbolTypeEnum.TOP);
+                reel.publishSymbolSprite(this.symbolFactory.create(displayedSymbols[1]), DisplayedSymbolTypeEnum.CENTER);
+                reel.publishSymbolSprite(this.symbolFactory.create(displayedSymbols[2]), DisplayedSymbolTypeEnum.UNDER);
+            }
         }
 
         // 全てのリールを回転させる
@@ -40,12 +49,6 @@ namespace SlotProject
         {
             Debug.Log($"{reelType}を停止します");
             this.reels[(int)reelType].StopSpinning();
-
-            // FIXME: テスト用なので不要
-            this.reels[0].publishSymbolSprite(
-                this.symbolFactory.create(SymbolTypeEnum.SEVEN),
-                DisplayedSymbolTypeEnum.TOP
-            );
         }
 
     }
