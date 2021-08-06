@@ -35,7 +35,7 @@ namespace SlotProject.TakiExample
             Performance,//お金を払うなどの演出中
         }
 
-        SlotRoleDeteminer slotRoleDeteminer;
+        SlotRoleDetaminer slotRoleDeteminer;
         SlotRoleJudgement slotRoleJudgement;
         [SerializeField]SlotStartLever startLever;
         [SerializeField] ReelsManager reelsManager;//全てのリールを管理する者

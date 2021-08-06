@@ -33,10 +33,12 @@ namespace SlotProject.TakiExample
         /// 自身が参照している全てのリールを回す関数
         /// </summary>
         public void StartAllReel()
-        {            
+        {
+            SlotRoleDetaminer slotRoleDetaminer = new SlotRoleDetaminer();
+            int[] hitReelSymbols = slotRoleDetaminer.DetaminAllSymbol();
             for(int i = 0; i < Reels.Length; i++)
             {
-                Reels[i].GetComponent<IReelStartable>().StartReel(-1);
+                Reels[i].GetComponent<IReelStartable>().StartReel(hitReelSymbols[i]);
                 Reels[i].GetComponent<IReelStartable>().SetStopEvent(StopOneReel);
             }
             stopedReelCount = 0;//全てのリールは回り始める
