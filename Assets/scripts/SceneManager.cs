@@ -9,7 +9,7 @@ namespace SlotProject
 
         private ReelService reelService;
 
-        [SerializeField] ButtonType buttonType;
+        [SerializeField] ButtonTypeEnum buttonType;
 
         public void Start()
         {
@@ -24,16 +24,16 @@ namespace SlotProject
         {
             switch (this.buttonType)
             {
-                case ButtonType.LEVER:
+                case ButtonTypeEnum.LEVER:
                     this.HandlePullLever();
                     break;
-                case ButtonType.LEFT:
+                case ButtonTypeEnum.LEFT:
                     this.HandlePushLeftButton();
                     break;
-                case ButtonType.CENTER:
+                case ButtonTypeEnum.CENTER:
                     this.HandlePushCenterButton();
                     break;
-                case ButtonType.RIGHT:
+                case ButtonTypeEnum.RIGHT:
                     this.HandlePushRightButton();
                     break;
             }
@@ -50,21 +50,21 @@ namespace SlotProject
         public void HandlePushLeftButton()
         {
             Debug.Log("左ボタンだよ");
-            this.reelService.StopSpinning(ReelType.LEFT);
+            this.reelService.StopSpinning(ReelTypeEnum.LEFT);
         }
 
         // 中央ボタンを押した
         public void HandlePushCenterButton()
         {
             Debug.Log("中央ボタンだよ");
-            this.reelService.StopSpinning(ReelType.CENTER);
+            this.reelService.StopSpinning(ReelTypeEnum.CENTER);
         }
 
         // 右ボタンを押した
         public void HandlePushRightButton()
         {
             Debug.Log("右ボタンだよ");
-            this.reelService.StopSpinning(ReelType.RIGHT);
+            this.reelService.StopSpinning(ReelTypeEnum.RIGHT);
         }
 
     }

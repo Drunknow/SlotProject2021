@@ -1,7 +1,7 @@
 namespace SlotProject
 {
 
-    public enum SymbolType
+    public enum SymbolTypeEnum
     {
 
         SEVEN,

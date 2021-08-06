@@ -16,13 +16,13 @@ namespace SlotProject
         }
 
         // リールを回転させる
-        public void StartSpinning(ReelType reelType)
+        public void StartSpinning(ReelTypeEnum reelType)
         {
             this.reels[(int)reelType].Start();
         }
 
         // リールを回転させる
-        public void StopSpinning(ReelType reelType)
+        public void StopSpinning(ReelTypeEnum reelType)
         {
             this.reels[(int)reelType].Stop();
         }

@@ -4,31 +4,31 @@ namespace SlotProject
     public class ReelModel
     {
 
-        private SymbolType[] symbols;
+        private SymbolTypeEnum[] symbols;
 
         private bool isSpinning = false;
 
         public ReelModel()
         {
             // 図柄リストを定義
-            this.symbols = new SymbolType[] {
-                SymbolType.SEVEN,
-                SymbolType.FULLHD,
-                SymbolType.WATERMELON,
-                SymbolType.BAR,
-                SymbolType.REPLAY,
-                SymbolType.CHERRY,
-                SymbolType.SEVEN,
-                SymbolType.FULLHD,
-                SymbolType.WATERMELON,
-                SymbolType.BAR,
-                SymbolType.REPLAY,
-                SymbolType.CHERRY,
+            this.symbols = new SymbolTypeEnum[] {
+                SymbolTypeEnum.SEVEN,
+                SymbolTypeEnum.FULLHD,
+                SymbolTypeEnum.WATERMELON,
+                SymbolTypeEnum.BAR,
+                SymbolTypeEnum.REPLAY,
+                SymbolTypeEnum.CHERRY,
+                SymbolTypeEnum.SEVEN,
+                SymbolTypeEnum.FULLHD,
+                SymbolTypeEnum.WATERMELON,
+                SymbolTypeEnum.BAR,
+                SymbolTypeEnum.REPLAY,
+                SymbolTypeEnum.CHERRY,
            };
         }
 
         // 図柄一覧を取得
-        public SymbolType[] GetSymbols()
+        public SymbolTypeEnum[] GetSymbols()
         {
             return this.symbols;
         }
