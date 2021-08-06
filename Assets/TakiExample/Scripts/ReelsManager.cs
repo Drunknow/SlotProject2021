@@ -54,9 +54,9 @@ namespace SlotProject.TakiExample
             {
 
                 //値段を判断する。
-                SlotRoleJudgement たなべ君 = new SlotRoleJudgement();//←これ最高のネーミングではないですか？
+                SlotRoleJudgement slotRoleJudgement = new SlotRoleJudgement();//←これ最高のネーミングではないですか？
                 //すべてのリールの情報を引数として、たなべ君(役を判定してくれる人)に渡す
-                int getCoin = たなべ君.CheckSlotReel(GetCurrentZugara());
+                int getCoin = slotRoleJudgement.CheckSlotReel(GetCurrentZugara());
 
                 /*デバッグ用
                 int[][] debugindex= GetCurrentZugara();
