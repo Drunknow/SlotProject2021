@@ -255,7 +255,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8498888446728791174}
-  - component: {fileID: 8498888446728791173}
+  - component: {fileID: 2199500812520276012}
   m_Layer: 0
   m_Name: Reel
   m_TagString: Untagged
@@ -280,7 +280,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8498888446728791173
+--- !u!114 &2199500812520276012
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -289,10 +289,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8498888446728791172}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f103a7894f358fc488d1a475c0d96231, type: 3}
+  m_Script: {fileID: 11500000, guid: f67f902bb1ff44670923dea28a84160a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reelRolls:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  displayedSymbols:
+  - {fileID: 1909092070216312290}
+  - {fileID: 2284801450927419874}
+  - {fileID: 1057708907015465376}

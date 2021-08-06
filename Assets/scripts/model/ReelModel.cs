@@ -1,14 +1,18 @@
+using UnityEngine;
+
 namespace SlotProject
 {
 
-    public class ReelModel
+    public class ReelModel : MonoBehaviour
     {
 
         private SymbolTypeEnum[] symbols;
 
+        [SerializeField] GameObject[] displayedSymbols;
+
         private bool isSpinning = false;
 
-        public ReelModel(SymbolTypeEnum[] symbols)
+        public void SetSymbols(SymbolTypeEnum[] symbols)
         {
             this.symbols = symbols;
         }
@@ -26,13 +30,13 @@ namespace SlotProject
         }
 
         // 回転開始
-        public void Start()
+        public void StartSpinning()
         {
             this.isSpinning = true;
         }
 
         // 回転停止
-        public void Stop()
+        public void StopSpinning()
         {
             this.isSpinning = false;
         }
@@ -41,6 +45,14 @@ namespace SlotProject
         public bool GetIsSpinning()
         {
             return this.isSpinning;
+        }
+
+        // 図柄のspriteを画面上に反映させる
+        public void publishSymbolSprite(Sprite sprite, DisplayedSymbolTypeEnum displayedSymbolType)
+        {
+            GameObject targetGameObject = this.displayedSymbols[(int)displayedSymbolType];
+            SpriteRenderer spriteRenderer = targetGameObject.GetComponent<SpriteRenderer>();
+            spriteRenderer.sprite = sprite;
         }
 
     }

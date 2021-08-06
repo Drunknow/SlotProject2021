@@ -7,14 +7,12 @@ namespace SlotProject
     public class SceneManager : MonoBehaviour
     {
 
-        private ReelService reelService;
+        [SerializeField] ReelService reelService;
 
         [SerializeField] ButtonTypeEnum buttonType;
 
         public void Start()
         {
-            this.reelService = new ReelService();
-
             // ボタンを押した時に実行するメソッドを設定
             this.GetComponent<Button>().onClick.AddListener(HandlePushButton);
         }

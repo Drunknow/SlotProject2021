@@ -3,14 +3,17 @@ using UnityEngine;
 namespace SlotProject
 {
 
-    public class ReelService
+    public class ReelService: MonoBehaviour
     {
+
+        [SerializeField] ReelFactory reelFactory;
+
+        private SymbolFactory symbolFactory = new SymbolFactory();
 
         private ReelModel[] reels;
 
-        public ReelService()
+        public void Start()
         {
-            ReelFactory reelFactory = new ReelFactory();
             this.reels = new ReelModel[3] {
                 reelFactory.create(ReelTypeEnum.LEFT),
                 reelFactory.create(ReelTypeEnum.CENTER),
@@ -29,14 +32,20 @@ namespace SlotProject
         // 特定のリールを回転させる
         private void StartSpinning(ReelTypeEnum reelType)
         {
-            this.reels[(int)reelType].Start();
+            this.reels[(int)reelType].StartSpinning();
         }
 
-        // 特定のリールを回転させる
+        // 特定のリールを停止させる
         public void StopSpinning(ReelTypeEnum reelType)
         {
             Debug.Log($"{reelType}を停止します");
-            this.reels[(int)reelType].Stop();
+            this.reels[(int)reelType].StopSpinning();
+
+            // FIXME: テスト用なので不要
+            this.reels[0].publishSymbolSprite(
+                this.symbolFactory.create(SymbolTypeEnum.SEVEN),
+                DisplayedSymbolTypeEnum.TOP
+            );
         }
 
     }
