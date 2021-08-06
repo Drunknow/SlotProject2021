@@ -16,9 +16,6 @@ public class ReelRoll : MonoBehaviour
     [SerializeField] int initialReelIndex;
     int reelIndexOffset;//何回分ずれたか
 
-    //親から与えられた、すべてのアイコンの移動を止める関数
-    public Action stopAllIconRolling;
-
     [NonSerialized]public float topY;//スロットの天井となるy座標
     [NonSerialized] public float bottomY;//スロットの底となるy座標
     [NonSerialized] public int symbolCount;//いくつのシンボルをまとめて扱っているか
@@ -35,13 +32,6 @@ public class ReelRoll : MonoBehaviour
         TF = GetComponent<Transform>();//キャッシュ(GetCOnponentはクソ思い)
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
-
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-
-    }
-
 
 
     public bool ScrollReel()

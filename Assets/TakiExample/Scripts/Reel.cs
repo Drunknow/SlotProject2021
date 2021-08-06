@@ -13,6 +13,7 @@ namespace SlotProject.TakiExample
         {
             Stop,
             Roll,
+            Slip,
         }
 
         ReelState reelState;
@@ -35,29 +36,34 @@ namespace SlotProject.TakiExample
                 reelRolls[i].topY = topY;
                 reelRolls[i].bottomY = bottomY;
                 reelRolls[i].symbolCount = reelRolls.Length;
-                reelRolls[i].stopAllIconRolling = StopAllReelRolling;
             }
         }
 
         void FixedUpdate()
         {
+
             bool isEndRolling = false;
-            foreach (ReelRoll reelRoll in reelRolls)
+
+            if (reelState == ReelState.Roll || reelState == ReelState.Slip)
             {
-                //図柄の場所をずらす
-                if (reelRoll.isRolling)
+                foreach (ReelRoll reelRoll in reelRolls)
                 {
-                    reelRoll.ScrollReel();
+                    //図柄の場所をずらす
+                    if (reelRoll.isRolling)
+                    {
+                        reelRoll.ScrollReel();
+                    }
+                    else if (reelRoll.isStopping)
+                    {
+                        isEndRolling = reelRoll.ScrollReel() || isEndRolling;
+                    }
                 }
-                else if (reelRoll.isStopping)
+                if (isEndRolling)
                 {
-                    isEndRolling = reelRoll.ScrollReel() || isEndRolling;
+                    StopAllReelRolling();
                 }
             }
-            if (isEndRolling)
-            {
-                StopAllReelRolling();
-            }
+
         }
 
 
@@ -71,8 +77,7 @@ namespace SlotProject.TakiExample
             if (reelState == ReelState.Roll)
             {
                 Debug.Log("リールを止めました。");
-                reelStopEvent();//マネージャーから受け取ったイベントを発火
-                reelState = ReelState.Stop;
+                reelState = ReelState.Slip;
                 for (int i = 0; i < reelRolls.Length; i++)
                 {
                     reelRolls[i].StopMainRolling();
@@ -129,13 +134,14 @@ namespace SlotProject.TakiExample
             return returnArray;
         }
 
-
+        /// <summary>
+        /// 完全にリールを止める
+        /// </summary>
         void StopAllReelRolling()
         {
-            for (int i = 0; i < reelRolls.Length; i++)
-            {
-                reelRolls[i].StopAllIconRolling();
-            }
+            reelStopEvent();//マネージャーから受け取ったイベントを発火
+            reelState = ReelState.Stop;
+            Debug.Log("リールは完全に止まった");
         }
 
     }
