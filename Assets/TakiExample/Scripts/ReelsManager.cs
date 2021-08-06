@@ -36,7 +36,7 @@ namespace SlotProject.TakiExample
         {            
             for(int i = 0; i < Reels.Length; i++)
             {
-                Reels[i].GetComponent<IReelStartable>().StartReel(1);
+                Reels[i].GetComponent<IReelStartable>().StartReel(-1);
                 Reels[i].GetComponent<IReelStartable>().SetStopEvent(StopOneReel);
             }
             stopedReelCount = 0;//‘S‚Ä‚ÌƒŠ[ƒ‹‚Í‰ñ‚èn‚ß‚é

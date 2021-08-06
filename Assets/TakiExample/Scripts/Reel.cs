@@ -68,7 +68,7 @@ namespace SlotProject.TakiExample
                 {
                     //ここを書き換えたら、いい感じに指定の条件になるまで統べる……はず
 
-                    if (GetAllReel()[2] == targetSymbol)
+                    if (GetAllReel()[2] == targetSymbol || targetSymbol == -1)
                     {
                         StopAllReelRolling();
 
