@@ -11,9 +11,9 @@ namespace SlotProject.TakiExample
 
         //神からイベントを受け取るのだ。
         //具体的には、全てのリールが止まった時に発火すべき関数。
-        Action<int> allReelStopEvent;
+        Action allReelStopEvent;
         //一応プロパティ化
-        public Action<int> AllReelStopEvent
+        public Action AllReelStopEvent
         {
             get
             {
@@ -33,12 +33,10 @@ namespace SlotProject.TakiExample
         /// 自身が参照している全てのリールを回す関数
         /// </summary>
         public void StartAllReel()
-        {
-            SlotRoleDetaminer slotRoleDetaminer = new SlotRoleDetaminer();
-            int[] hitReelSymbols = slotRoleDetaminer.DetaminAllSymbol();
+        {            
             for(int i = 0; i < Reels.Length; i++)
             {
-                Reels[i].GetComponent<IReelStartable>().StartReel(hitReelSymbols[i]);
+                Reels[i].GetComponent<IReelStartable>().StartReel();
                 Reels[i].GetComponent<IReelStartable>().SetStopEvent(StopOneReel);
             }
             stopedReelCount = 0;//全てのリールは回り始める
@@ -52,35 +50,17 @@ namespace SlotProject.TakiExample
             //もし、止まっているリールの数が参照の数といっしょなら、神から受け取ったイベントを発火する。
             if(stopedReelCount == Reels.Length)
             {
+                //まずはすべてのリールの情報を取得する。
+                GetCurrentZugara();
 
-                //値段を判断する。
-                SlotRoleJudgement たなべ君 = new SlotRoleJudgement();//←これ最高のネーミングではないですか？
-                //すべてのリールの情報を引数として、たなべ君(役を判定してくれる人)に渡す
-                int getCoin = たなべ君.CheckSlotReel(GetCurrentZugara());
-
-                /*デバッグ用
-                int[][] debugindex= GetCurrentZugara();
-                for(int i = 0; i < debugindex.Length; i++)
-                {
-                    for(int j = 0; j < debugindex[i].Length; j++)
-                    {
-                        Debug.Log(i + "番目のリールの" + j + "番目は" + debugindex[i][j]);
-                    }
-                }
-                */
+                //
 
                 //最後に受け取った関数を発火する。
-                allReelStopEvent(getCoin);
+                allReelStopEvent();
             }
         }
 
 
-        /// <summary>
-        /// すべての図柄を取得して返す。
-        /// 各リールごとに配列とし、
-        /// 二次元配列で返す。
-        /// </summary>
-        /// <returns></returns>
         public int[][] GetCurrentZugara()
         {
             int[][] reals = new int[3][];
@@ -90,7 +70,10 @@ namespace SlotProject.TakiExample
 
             for(int i = 0; i < 3; i++)
             {
-                reals[i] = Reels[i].GetComponent<Reel>().GetAllReel();           
+                for (int j = 0; j < 3; j++)
+                {
+                    reals[i][j] = Reels[i].GetComponent<Reel>().GetAllReel()[j];
+                }
             }
 
             return reals;
