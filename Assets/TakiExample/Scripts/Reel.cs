@@ -16,6 +16,8 @@ namespace SlotProject.TakiExample
             Slip,
         }
 
+        int targetSymbol;//どのシンボルで止まることを定められているかを格納。-1でフリー
+
         ReelState reelState;
         ReelRoll[] reelRolls;//3つの表示されるやつら
 
@@ -25,6 +27,10 @@ namespace SlotProject.TakiExample
         //リールマネージャーからイベントを受け取るのだ。
         //具体的には、リールを止めることに成功した際に発火すべき関数。
         Action reelStopEvent;
+
+
+
+
 
         void Start()
         {
@@ -60,7 +66,14 @@ namespace SlotProject.TakiExample
                 }
                 if (isEndRolling)
                 {
-                    StopAllReelRolling();
+                    //ここを書き換えたら、いい感じに指定の条件になるまで統べる……はず
+
+                    if (GetAllReel()[2] == targetSymbol)
+                    {
+                        StopAllReelRolling();
+
+                    }
+
                 }
             }
 
@@ -92,8 +105,9 @@ namespace SlotProject.TakiExample
         /// <summary>
         /// 自身が参照しているリールを回す関数
         /// </summary>
-        public void StartReel()
+        public void StartReel(int target)
         {
+            targetSymbol = target;
             if (reelState == ReelState.Roll)
             {
                 Debug.Log("リールは既に回っています");

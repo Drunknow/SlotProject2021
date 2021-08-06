@@ -34,6 +34,10 @@ public class ReelRoll : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// 画像の位置を変えます。
+    /// </summary>
+    /// <returns>座標の繰り上がりが発生したかどうか</returns>
     public bool ScrollReel()
     {
         bool isIconReturn = false;
