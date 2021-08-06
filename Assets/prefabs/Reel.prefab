@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4946192540573553948}
   - component: {fileID: 4087318337210895745}
-  - component: {fileID: 2493298619662135960}
   m_Layer: 0
   m_Name: under_symbol
   m_TagString: Untagged
@@ -72,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ca30fb576492e4bdc820231f11fc4c56, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -80,32 +79,9 @@ SpriteRenderer:
   m_Size: {x: 2.04, y: 0.94}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2493298619662135960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1057708907015465376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22113c713ba500944bc45b717fa14440, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isRolling: 0
-  initialReelIndex: 0
-  indicateReelLocation: 0
-  sprites:
-  - {fileID: 21300000, guid: ca30fb576492e4bdc820231f11fc4c56, type: 3}
-  - {fileID: 21300000, guid: 283b1ae10b50c4058b1eb543454f41ba, type: 3}
-  - {fileID: 21300000, guid: 98029398db7d94fe181bef5cd62f3bca, type: 3}
-  - {fileID: 21300000, guid: be6a7583e56ef4e0297a454a2767ccfe, type: 3}
-  - {fileID: 21300000, guid: 8fe43fbfc3a7b44dcadacf885b7504d1, type: 3}
-  - {fileID: 21300000, guid: b98345f911f6f41ddaafd562e05b7173, type: 3}
-  - {fileID: 21300000, guid: c1c50bfd4784a4746b9f720a63907c1f, type: 3}
 --- !u!1 &1909092070216312290
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,7 +92,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6977636950903957054}
   - component: {fileID: 2268252235903711324}
-  - component: {fileID: 4774107463566406609}
   m_Layer: 0
   m_Name: top_symbol
   m_TagString: Untagged
@@ -178,7 +153,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b98345f911f6f41ddaafd562e05b7173, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -186,32 +161,9 @@ SpriteRenderer:
   m_Size: {x: 3.02, y: 1.67}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4774107463566406609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1909092070216312290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22113c713ba500944bc45b717fa14440, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isRolling: 0
-  initialReelIndex: 0
-  indicateReelLocation: 0
-  sprites:
-  - {fileID: 21300000, guid: ca30fb576492e4bdc820231f11fc4c56, type: 3}
-  - {fileID: 21300000, guid: 283b1ae10b50c4058b1eb543454f41ba, type: 3}
-  - {fileID: 21300000, guid: 98029398db7d94fe181bef5cd62f3bca, type: 3}
-  - {fileID: 21300000, guid: be6a7583e56ef4e0297a454a2767ccfe, type: 3}
-  - {fileID: 21300000, guid: 8fe43fbfc3a7b44dcadacf885b7504d1, type: 3}
-  - {fileID: 21300000, guid: b98345f911f6f41ddaafd562e05b7173, type: 3}
-  - {fileID: 21300000, guid: c1c50bfd4784a4746b9f720a63907c1f, type: 3}
 --- !u!1 &2284801450927419874
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,7 +174,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2119155776819469300}
   - component: {fileID: 3746843414399307207}
-  - component: {fileID: 287211566203965397}
   m_Layer: 0
   m_Name: center_symbol
   m_TagString: Untagged
@@ -284,7 +235,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c1c50bfd4784a4746b9f720a63907c1f, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -292,32 +243,9 @@ SpriteRenderer:
   m_Size: {x: 2.4, y: 1.34}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &287211566203965397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2284801450927419874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22113c713ba500944bc45b717fa14440, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isRolling: 0
-  initialReelIndex: 0
-  indicateReelLocation: 0
-  sprites:
-  - {fileID: 21300000, guid: ca30fb576492e4bdc820231f11fc4c56, type: 3}
-  - {fileID: 21300000, guid: 283b1ae10b50c4058b1eb543454f41ba, type: 3}
-  - {fileID: 21300000, guid: 98029398db7d94fe181bef5cd62f3bca, type: 3}
-  - {fileID: 21300000, guid: be6a7583e56ef4e0297a454a2767ccfe, type: 3}
-  - {fileID: 21300000, guid: 8fe43fbfc3a7b44dcadacf885b7504d1, type: 3}
-  - {fileID: 21300000, guid: b98345f911f6f41ddaafd562e05b7173, type: 3}
-  - {fileID: 21300000, guid: c1c50bfd4784a4746b9f720a63907c1f, type: 3}
 --- !u!1 &8498888446728791172
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,6 +293,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reelRolls:
-  - {fileID: 2493298619662135960}
-  - {fileID: 287211566203965397}
-  - {fileID: 4774107463566406609}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
