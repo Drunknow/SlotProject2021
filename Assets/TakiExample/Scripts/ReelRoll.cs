@@ -39,24 +39,12 @@ public class ReelRoll : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //図柄の場所をずらす
-        if (isRolling)
-        {
-            ScrollReel();
-        }
-        else if(isStopping)
-        {
-            bool isWrapping = ScrollReel();
-            if (isWrapping)
-            {
-                stopAllIconRolling();
-            }
-        }
+
     }
 
 
 
-    bool ScrollReel()
+    public bool ScrollReel()
     {
         bool isIconReturn = false;
         //図柄のy座標を移動する

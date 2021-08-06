@@ -1,7 +1,5 @@
 using System;
 using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace SlotProject.TakiExample
@@ -41,17 +39,41 @@ namespace SlotProject.TakiExample
             }
         }
 
+        void FixedUpdate()
+        {
+            bool isEndRolling = false;
+            foreach (ReelRoll reelRoll in reelRolls)
+            {
+                //図柄の場所をずらす
+                if (reelRoll.isRolling)
+                {
+                    reelRoll.ScrollReel();
+                }
+                else if (reelRoll.isStopping)
+                {
+                    isEndRolling = reelRoll.ScrollReel() || isEndRolling;
+                }
+            }
+            if (isEndRolling)
+            {
+                StopAllReelRolling();
+            }
+        }
+
+
+
+
         /// <summary>
         /// 自身が参照しているリールを止める関数
         /// </summary>
         public void StopReel()
         {
-            if(reelState == ReelState.Roll)
+            if (reelState == ReelState.Roll)
             {
                 Debug.Log("リールを止めました。");
                 reelStopEvent();//マネージャーから受け取ったイベントを発火
                 reelState = ReelState.Stop;
-                for(int i = 0; i < reelRolls.Length; i++)
+                for (int i = 0; i < reelRolls.Length; i++)
                 {
                     reelRolls[i].StopMainRolling();
                 }
@@ -89,7 +111,7 @@ namespace SlotProject.TakiExample
         }
 
 
-        
+
         /// <summary>
         /// リールの順番を高さの順に取る
         /// </summary>
@@ -99,7 +121,7 @@ namespace SlotProject.TakiExample
 
             int[] returnArray = new int[reelRolls.Length];
             reelRolls = reelRolls.OrderByDescending(a => a.transform.position.y).ToArray();
-            for(int i = 0; i < reelRolls.Length; i++)
+            for (int i = 0; i < reelRolls.Length; i++)
             {
                 returnArray[i] = reelRolls[i].GetZugara();
                 //Debug.Log(reelRolls[i].GetZugara());
