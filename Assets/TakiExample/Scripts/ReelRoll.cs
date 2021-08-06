@@ -10,12 +10,14 @@ public class ReelRoll : MonoBehaviour
 
     Transform TF;
     public bool isRolling;
+    public bool isStopping;
     ReelZugara reelZugara;
 
     [SerializeField] int initialReelIndex;
-    [SerializeField] int indicateReelLocation;//これは、リールの図柄の為に利用しているものです。
     int reelIndexOffset;//何回分ずれたか
 
+    //親から与えられた、すべてのアイコンの移動を止める関数
+    public Action stopAllIconRolling;
 
     [NonSerialized]public float topY;//スロットの天井となるy座標
     [NonSerialized] public float bottomY;//スロットの底となるy座標
@@ -40,30 +42,40 @@ public class ReelRoll : MonoBehaviour
         //図柄の場所をずらす
         if (isRolling)
         {
-
-            //図柄のy座標を移動する
-            float nextPositionY = TF.position.y - ROLL_ONE_FLAME;
-            TF.position = new Vector3(TF.position.x, nextPositionY, TF.position.z);
-
-            //思ったよりも下に行くようなら画像を変えて、一番上にもってく
-            if (TF.position.y < bottomY)
-            {
-                reelIndexOffset = (reelIndexOffset + symbolCount) % reelZugara.reel.Length;
-                int nextSymbolIndex = (reelIndexOffset + initialReelIndex) % reelZugara.reel.Length;
-                spriteRenderer.sprite = sprites[reelZugara.reel[nextSymbolIndex]];
-
-                TF.position = new Vector3(TF.position.x, topY, TF.position.z);
-
-            }
-
-
-
-
+            ScrollReel();
         }
-        else
+        else if(isStopping)
         {
-            
+            bool isWrapping = ScrollReel();
+            if (isWrapping)
+            {
+                stopAllIconRolling();
+            }
         }
+    }
+
+
+
+    bool ScrollReel()
+    {
+        bool isIconReturn = false;
+        //図柄のy座標を移動する
+        float nextPositionY = TF.position.y - ROLL_ONE_FLAME;
+        TF.position = new Vector3(TF.position.x, nextPositionY, TF.position.z);
+
+        //思ったよりも下に行くようなら画像を変えて、一番上にもってく
+        if (TF.position.y < bottomY)
+        {
+            reelIndexOffset = (reelIndexOffset + symbolCount) % reelZugara.reel.Length;
+            int nextSymbolIndex = (reelIndexOffset + initialReelIndex) % reelZugara.reel.Length;
+            spriteRenderer.sprite = sprites[reelZugara.reel[nextSymbolIndex]];
+
+            TF.position = new Vector3(TF.position.x, topY, TF.position.z);
+
+            isIconReturn = true;
+        }
+
+        return isIconReturn;
     }
 
     /// <summary>
@@ -73,6 +85,19 @@ public class ReelRoll : MonoBehaviour
     {
         int symbolIndex = (reelIndexOffset + initialReelIndex) % reelZugara.reel.Length;
         return reelZugara.reel[symbolIndex];
+    }
+
+
+    public void StopMainRolling()
+    {
+        isStopping = true;
+        isRolling = false;
+    }
+
+    public void StopAllIconRolling()
+    {
+        isStopping = false;
+        isRolling = false;
     }
 
 }

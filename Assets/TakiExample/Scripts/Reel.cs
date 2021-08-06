@@ -37,6 +37,7 @@ namespace SlotProject.TakiExample
                 reelRolls[i].topY = topY;
                 reelRolls[i].bottomY = bottomY;
                 reelRolls[i].symbolCount = reelRolls.Length;
+                reelRolls[i].stopAllIconRolling = StopAllReelRolling;
             }
         }
 
@@ -52,7 +53,7 @@ namespace SlotProject.TakiExample
                 reelState = ReelState.Stop;
                 for(int i = 0; i < reelRolls.Length; i++)
                 {
-                    reelRolls[i].isRolling = false;
+                    reelRolls[i].StopMainRolling();
                 }
             }
             else
@@ -81,6 +82,7 @@ namespace SlotProject.TakiExample
             }
         }
 
+
         public void SetStopEvent(Action action)
         {
             reelStopEvent = action;
@@ -105,6 +107,14 @@ namespace SlotProject.TakiExample
             return returnArray;
         }
 
+
+        void StopAllReelRolling()
+        {
+            for (int i = 0; i < reelRolls.Length; i++)
+            {
+                reelRolls[i].StopAllIconRolling();
+            }
+        }
 
     }
 }
