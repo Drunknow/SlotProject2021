@@ -8,23 +8,9 @@ namespace SlotProject
 
         private bool isSpinning = false;
 
-        public ReelModel()
+        public ReelModel(SymbolTypeEnum[] symbols)
         {
-            // 図柄リストを定義
-            this.symbols = new SymbolTypeEnum[] {
-                SymbolTypeEnum.SEVEN,
-                SymbolTypeEnum.FULLHD,
-                SymbolTypeEnum.WATERMELON,
-                SymbolTypeEnum.BAR,
-                SymbolTypeEnum.REPLAY,
-                SymbolTypeEnum.CHERRY,
-                SymbolTypeEnum.SEVEN,
-                SymbolTypeEnum.FULLHD,
-                SymbolTypeEnum.WATERMELON,
-                SymbolTypeEnum.BAR,
-                SymbolTypeEnum.REPLAY,
-                SymbolTypeEnum.CHERRY,
-           };
+            this.symbols = symbols;
         }
 
         // 図柄一覧を取得
@@ -40,13 +26,21 @@ namespace SlotProject
         }
 
         // 回転開始
-        public void Start() {
+        public void Start()
+        {
             this.isSpinning = true;
         }
 
         // 回転停止
-        public void Stop() {
+        public void Stop()
+        {
             this.isSpinning = false;
+        }
+
+        // 回転中か
+        public bool GetIsSpinning()
+        {
+            return this.isSpinning;
         }
 
     }

@@ -42,28 +42,24 @@ namespace SlotProject
         // レバーを下げた
         public void HandlePullLever()
         {
-            Debug.Log("レバーだよ");
-            this.reelService.StartSpinning(0);
+            this.reelService.startAll();
         }
 
         // 左ボタンを押した
         public void HandlePushLeftButton()
         {
-            Debug.Log("左ボタンだよ");
             this.reelService.StopSpinning(ReelTypeEnum.LEFT);
         }
 
         // 中央ボタンを押した
         public void HandlePushCenterButton()
         {
-            Debug.Log("中央ボタンだよ");
             this.reelService.StopSpinning(ReelTypeEnum.CENTER);
         }
 
         // 右ボタンを押した
         public void HandlePushRightButton()
         {
-            Debug.Log("右ボタンだよ");
             this.reelService.StopSpinning(ReelTypeEnum.RIGHT);
         }
 

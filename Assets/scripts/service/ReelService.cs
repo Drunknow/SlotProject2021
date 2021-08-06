@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace SlotProject
 {
 
@@ -8,22 +10,32 @@ namespace SlotProject
 
         public ReelService()
         {
+            ReelFactory reelFactory = new ReelFactory();
             this.reels = new ReelModel[3] {
-                new ReelModel(),
-                new ReelModel(),
-                new ReelModel(),
+                reelFactory.create(ReelTypeEnum.LEFT),
+                reelFactory.create(ReelTypeEnum.CENTER),
+                reelFactory.create(ReelTypeEnum.RIGHT),
             };
         }
 
-        // リールを回転させる
-        public void StartSpinning(ReelTypeEnum reelType)
+        // 全てのリールを回転させる
+        public void startAll()
+        {
+            this.StartSpinning(ReelTypeEnum.LEFT);
+            this.StartSpinning(ReelTypeEnum.CENTER);
+            this.StartSpinning(ReelTypeEnum.RIGHT);
+        }
+
+        // 特定のリールを回転させる
+        private void StartSpinning(ReelTypeEnum reelType)
         {
             this.reels[(int)reelType].Start();
         }
 
-        // リールを回転させる
+        // 特定のリールを回転させる
         public void StopSpinning(ReelTypeEnum reelType)
         {
+            Debug.Log($"{reelType}を停止します");
             this.reels[(int)reelType].Stop();
         }
 

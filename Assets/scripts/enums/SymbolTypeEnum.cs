@@ -16,6 +16,8 @@ namespace SlotProject
 
         CHERRY,
 
+        BELL,
+
         TRASH,
 
     }
