@@ -826,8 +826,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reelService: {fileID: 27105709}
   coinService: {fileID: 129813221}
+  soundEffectService: {fileID: 2135076742}
   buttonType: 0
-  leverSoundSource: {fileID: 0}
 --- !u!1 &972568606
 GameObject:
   m_ObjectHideFlags: 0
@@ -1068,8 +1068,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reelService: {fileID: 27105709}
   coinService: {fileID: 129813221}
+  soundEffectService: {fileID: 2135076742}
   buttonType: 1
-  leverSoundSource: {fileID: 0}
 --- !u!1 &1055592482
 GameObject:
   m_ObjectHideFlags: 0
@@ -1415,8 +1415,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reelService: {fileID: 27105709}
   coinService: {fileID: 129813221}
+  soundEffectService: {fileID: 2135076742}
   buttonType: 3
-  leverSoundSource: {fileID: 0}
 --- !u!1 &1356162813
 GameObject:
   m_ObjectHideFlags: 0
@@ -1542,7 +1542,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1364746392
 PrefabInstance:
@@ -1880,7 +1880,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1796940040 stripped
 MonoBehaviour:
@@ -2018,7 +2018,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1877391724
 GameObject:
@@ -2155,8 +2155,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reelService: {fileID: 27105709}
   coinService: {fileID: 129813221}
+  soundEffectService: {fileID: 2135076742}
   buttonType: 2
-  leverSoundSource: {fileID: 0}
 --- !u!1 &1911460581
 GameObject:
   m_ObjectHideFlags: 0
@@ -2282,7 +2282,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1962960394
 PrefabInstance:
@@ -2383,6 +2383,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2135076741
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2135076743}
+  - component: {fileID: 2135076742}
+  m_Layer: 0
+  m_Name: SoundEffectService
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2135076742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135076741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d2145b1b55014760a9a03cf6c6e94f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leverSoundSource: {fileID: 1809015842}
+  buttonSoundSource: {fileID: 1747423055}
+  bigSoundSource: {fileID: 1911460582}
+  fullhdSoundSource: {fileID: 1356162814}
+--- !u!4 &2135076743
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135076741}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.26112583, y: -0.4748123, z: -20.55486}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2143402975 stripped
 MonoBehaviour:
