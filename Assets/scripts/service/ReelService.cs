@@ -13,6 +13,8 @@ namespace SlotProject
 
         private ReelModel[] reels;
 
+        private bool isPushedLastButton;
+
         public void Start()
         {
             // フレームレートを指定
@@ -61,6 +63,8 @@ namespace SlotProject
             this.StartSpinning(ReelTypeEnum.LEFT);
             this.StartSpinning(ReelTypeEnum.CENTER);
             this.StartSpinning(ReelTypeEnum.RIGHT);
+
+            this.isPushedLastButton = false;
         }
 
         // 特定のリールを回転させる
@@ -72,7 +76,13 @@ namespace SlotProject
         // 特定のリールを停止させる
         public void StopSpinning(ReelTypeEnum reelType)
         {
+            if (this.IsAllReelStop())
+            {
+                return;
+            }
+
             this.reels[(int)reelType].StopSpinning();
+            this.isPushedLastButton = this.IsAllReelStop();
         }
 
         // リールが全て停止しているか？
@@ -85,6 +95,31 @@ namespace SlotProject
             }
 
             return result;
+        }
+
+        // 揃っている図柄を取得
+        public SymbolTypeEnum? GetObtainedSymbol()
+        {
+            // 最後のボタンが押された時のみ図柄を判定する
+            if (this.isPushedLastButton)
+            {
+                this.isPushedLastButton = false;
+            }
+            else
+            {
+                return null;
+            }
+
+            // 中央3つ揃い
+            if (this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.CENTER) == //
+                this.reels[(int)ReelTypeEnum.CENTER].GetCurrentSymbol(DisplayedSymbolTypeEnum.CENTER) && //
+                this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.CENTER) == //
+                this.reels[(int)ReelTypeEnum.RIGHT].GetCurrentSymbol(DisplayedSymbolTypeEnum.CENTER))
+            {
+                return this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.CENTER);
+            }
+
+            return null;
         }
 
     }
