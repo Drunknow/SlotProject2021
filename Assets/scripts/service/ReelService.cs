@@ -16,7 +16,7 @@ namespace SlotProject
         public void Start()
         {
             // フレームレートを指定
-            int frameRate = 3;
+            int frameRate = 25;
             Time.fixedDeltaTime = 1.0f / frameRate;
 
             // リールオブジェクトを取得
@@ -72,7 +72,6 @@ namespace SlotProject
         // 特定のリールを停止させる
         public void StopSpinning(ReelTypeEnum reelType)
         {
-            Debug.Log($"{reelType}を停止します");
             this.reels[(int)reelType].StopSpinning();
         }
 
