@@ -55,25 +55,35 @@ namespace SlotProject
         // 左ボタンを押した
         public void HandlePushLeftButton()
         {
-            this.soundEffectService.PlayButtonSound();
-            this.reelService.StopSpinning(ReelTypeEnum.LEFT);
-            this.coinService.GivePayout(this.reelService.GetObtainedSymbol());
+            if (!this.reelService.IsReelStop(ReelTypeEnum.LEFT))
+            {
+                this.soundEffectService.PlayButtonSound();
+                this.reelService.StopSpinning(ReelTypeEnum.LEFT);
+                this.coinService.GivePayout(this.reelService.GetObtainedSymbol());
+            }
         }
 
         // 中央ボタンを押した
         public void HandlePushCenterButton()
         {
-            this.soundEffectService.PlayButtonSound();
-            this.reelService.StopSpinning(ReelTypeEnum.CENTER);
-            this.coinService.GivePayout(this.reelService.GetObtainedSymbol());
+            if (!this.reelService.IsReelStop(ReelTypeEnum.CENTER))
+            {
+                this.soundEffectService.PlayButtonSound();
+                this.reelService.StopSpinning(ReelTypeEnum.CENTER);
+                this.coinService.GivePayout(this.reelService.GetObtainedSymbol());
+            }
         }
 
         // 右ボタンを押した
         public void HandlePushRightButton()
         {
-            this.soundEffectService.PlayButtonSound();
-            this.reelService.StopSpinning(ReelTypeEnum.RIGHT);
-            this.coinService.GivePayout(this.reelService.GetObtainedSymbol());
+            if (!this.reelService.IsReelStop(ReelTypeEnum.RIGHT))
+            {
+                this.soundEffectService.PlayButtonSound();
+                this.reelService.StopSpinning(ReelTypeEnum.RIGHT);
+                this.coinService.GivePayout(this.reelService.GetObtainedSymbol());
+            }
+
         }
 
     }

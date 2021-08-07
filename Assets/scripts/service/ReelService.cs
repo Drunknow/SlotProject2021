@@ -98,6 +98,12 @@ namespace SlotProject
             return result;
         }
 
+        // 指定したリールが停止しているか？
+        public bool IsReelStop(ReelTypeEnum reelType)
+        {
+            return !this.reels[(int)reelType].GetIsSpinning();
+        }
+
         // 揃っている図柄を取得
         public SymbolTypeEnum? GetObtainedSymbol()
         {
