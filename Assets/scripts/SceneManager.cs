@@ -9,6 +9,8 @@ namespace SlotProject
 
         [SerializeField] ReelService reelService;
 
+        [SerializeField] CoinService coinService;
+
         [SerializeField] ButtonTypeEnum buttonType;
 
         public void Start()
@@ -40,25 +42,32 @@ namespace SlotProject
         // レバーを下げた
         public void HandlePullLever()
         {
-            this.reelService.startAll();
+            if (this.reelService.IsAllReelStop() && this.coinService.canInsertCredit())
+            {
+                this.coinService.InsertCredit();
+                this.reelService.startAll();
+            }
         }
 
         // 左ボタンを押した
         public void HandlePushLeftButton()
         {
             this.reelService.StopSpinning(ReelTypeEnum.LEFT);
+            this.coinService.GivePayout(this.reelService.GetObtainedSymbol());
         }
 
         // 中央ボタンを押した
         public void HandlePushCenterButton()
         {
             this.reelService.StopSpinning(ReelTypeEnum.CENTER);
+            this.coinService.GivePayout(this.reelService.GetObtainedSymbol());
         }
 
         // 右ボタンを押した
         public void HandlePushRightButton()
         {
             this.reelService.StopSpinning(ReelTypeEnum.RIGHT);
+            this.coinService.GivePayout(this.reelService.GetObtainedSymbol());
         }
 
     }

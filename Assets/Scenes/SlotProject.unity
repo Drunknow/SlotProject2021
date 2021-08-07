@@ -494,8 +494,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 155, y: -190.85}
-  m_SizeDelta: {x: 127.74, y: 34.73}
+  m_AnchoredPosition: {x: 132.88, y: -196.39}
+  m_SizeDelta: {x: 83.51, y: 27.68}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &587426578
 MonoBehaviour:
@@ -519,12 +519,12 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 25
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 5
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -766,7 +766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02f2e82f69c6440608a0a867fadc16b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reelService: {fileID: 0}
+  reelService: {fileID: 27105709}
   buttonType: 0
 --- !u!1 &972568606
 GameObject:
@@ -1043,8 +1043,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 54.595, y: -192.86}
-  m_SizeDelta: {x: 148.81, y: 38.74}
+  m_AnchoredPosition: {x: -0.5975, y: -196.39001}
+  m_SizeDelta: {x: 125.19, y: 27.68}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1055592484
 MonoBehaviour:
@@ -1068,12 +1068,12 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 25
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 5
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -1217,6 +1217,7 @@ GameObject:
   - component: {fileID: 1244511351}
   - component: {fileID: 1244511350}
   - component: {fileID: 1244511349}
+  - component: {fileID: 1244511352}
   m_Layer: 5
   m_Name: RightButton
   m_TagString: Untagged
@@ -1325,6 +1326,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244511347}
   m_CullTransparentMesh: 1
+--- !u!114 &1244511352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244511347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02f2e82f69c6440608a0a867fadc16b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reelService: {fileID: 27105709}
+  buttonType: 3
 --- !u!1001 &1364746392
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1559,6 +1574,7 @@ GameObject:
   - component: {fileID: 1877391728}
   - component: {fileID: 1877391727}
   - component: {fileID: 1877391726}
+  - component: {fileID: 1877391729}
   m_Layer: 5
   m_Name: CenterButton
   m_TagString: Untagged
@@ -1667,6 +1683,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1877391724}
   m_CullTransparentMesh: 1
+--- !u!114 &1877391729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877391724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02f2e82f69c6440608a0a867fadc16b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reelService: {fileID: 27105709}
+  buttonType: 2
 --- !u!1001 &1962960394
 PrefabInstance:
   m_ObjectHideFlags: 0
