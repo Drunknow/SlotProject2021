@@ -53,7 +53,10 @@ namespace SlotProject.TakiExample
                 //まずはすべてのリールの情報を取得する。
                 GetCurrentZugara();
 
-                //
+                //値段を判断する。
+                SlotRoleJudgement slotRoleJudgement = new SlotRoleJudgement();//←これ最高のネーミングではないですか？
+                //すべてのリールの情報を引数として、たなべ君(役を判定してくれる人)に渡す
+                int getCoin = slotRoleJudgement.CheckSlotReel(GetCurrentZugara());
 
                 //最後に受け取った関数を発火する。
                 allReelStopEvent();
