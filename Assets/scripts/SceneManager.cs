@@ -53,18 +53,21 @@ namespace SlotProject
         public void HandlePushLeftButton()
         {
             this.reelService.StopSpinning(ReelTypeEnum.LEFT);
+            this.coinService.GivePayout(this.reelService.GetObtainedSymbol());
         }
 
         // 中央ボタンを押した
         public void HandlePushCenterButton()
         {
             this.reelService.StopSpinning(ReelTypeEnum.CENTER);
+            this.coinService.GivePayout(this.reelService.GetObtainedSymbol());
         }
 
         // 右ボタンを押した
         public void HandlePushRightButton()
         {
             this.reelService.StopSpinning(ReelTypeEnum.RIGHT);
+            this.coinService.GivePayout(this.reelService.GetObtainedSymbol());
         }
 
     }

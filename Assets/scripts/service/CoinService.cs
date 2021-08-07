@@ -15,32 +15,64 @@ namespace SlotProject
         public void Start()
         {
             // コインの初期枚数を指定
-            this.PublishCredit(7);
+            this.PublishCredit(250);
             this.PublishPayout(0);
         }
 
         // クレジットを入れる
         public void InsertCredit()
         {
-            this.creditField.AddCoins(-this.creditAmount);
+            this.AddCredit(-this.creditAmount);
+            // ペイアウトをリセット
+            this.PublishPayout(0);
         }
 
-        // Creditフィールドに値を反映
-        public void PublishCredit(int credit)
+        // Creditに値を反映
+        public void PublishCredit(int coins)
         {
-            this.creditField.SetCoins(credit);
+            this.creditField.SetCoins(coins);
         }
 
-        // Payoutフィールドに値を反映
-        public void PublishPayout(int payout)
+        // Payoutに値を反映
+        public void PublishPayout(int coins)
         {
-            this.payoutField.SetCoins(payout);
+            this.payoutField.SetCoins(coins);
+            this.AddCredit(coins);
+        }
+
+        // Creditに加算
+        public void AddCredit(int coins)
+        {
+            this.creditField.AddCoins(coins);
         }
 
         // クレジットを入れれるか？
         public bool canInsertCredit()
         {
             return this.creditField.GetCoins() >= this.creditAmount;
+        }
+
+        // ペイアウトを獲得
+        public void GivePayout(SymbolTypeEnum? symbolType)
+        {
+            // FIXME: 各図柄のペイアウトを定義
+            switch (symbolType)
+            {
+                case SymbolTypeEnum.SEVEN:
+                    this.PublishPayout(230);
+                    break;
+                case SymbolTypeEnum.BELL:
+                    this.PublishPayout(15);
+                    break;
+                case SymbolTypeEnum.CHERRY:
+                    this.PublishPayout(15);
+                    break;
+                case SymbolTypeEnum.REPLAY:
+                    this.AddCredit(this.creditAmount);
+                    break;
+                default:
+                    break;
+            }
         }
 
     }
