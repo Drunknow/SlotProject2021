@@ -13,6 +13,7 @@ namespace SlotProject
 
         private ReelModel[] reels;
 
+        // FIXME: サービスが状態保つのはNG
         private bool isPushedLastButton;
 
         public void Start()

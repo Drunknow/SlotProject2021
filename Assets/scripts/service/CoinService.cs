@@ -59,16 +59,28 @@ namespace SlotProject
             switch (symbolType)
             {
                 case SymbolTypeEnum.SEVEN:
-                    this.PublishPayout(230);
+                    this.PublishPayout(350);
+                    break;
+                case SymbolTypeEnum.FULLHD:
+                    this.PublishPayout(450);
+                    break;
+                case SymbolTypeEnum.WATERMELON:
+                    this.PublishPayout(8);
+                    break;
+                case SymbolTypeEnum.BAR:
+                    this.PublishPayout(0);
+                    break;
+                case SymbolTypeEnum.REPLAY:
+                    this.AddCredit(this.creditAmount);
+                    break;
+                case SymbolTypeEnum.CHERRY:
+                    this.PublishPayout(4);
                     break;
                 case SymbolTypeEnum.BELL:
                     this.PublishPayout(15);
                     break;
-                case SymbolTypeEnum.CHERRY:
-                    this.PublishPayout(15);
-                    break;
-                case SymbolTypeEnum.REPLAY:
-                    this.AddCredit(this.creditAmount);
+                case SymbolTypeEnum.TRASH:
+                    this.PublishPayout(0);
                     break;
                 default:
                     break;
