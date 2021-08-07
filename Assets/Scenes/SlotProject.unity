@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbbb6baf7030e455f904c9dbdf726429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  frameRate: 20
   reelFactory: {fileID: 388689427}
 --- !u!4 &27105710
 Transform:

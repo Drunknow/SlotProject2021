@@ -7,6 +7,8 @@ namespace SlotProject
     public class ReelService : MonoBehaviour
     {
 
+        [SerializeField] int frameRate;
+
         [SerializeField] ReelFactory reelFactory;
 
         private SymbolFactory symbolFactory = new SymbolFactory();
@@ -18,9 +20,8 @@ namespace SlotProject
 
         public void Start()
         {
-            // フレームレートを指定
-            int frameRate = 3;
-            Time.fixedDeltaTime = 1.0f / frameRate;
+            // フレームレート
+            Time.fixedDeltaTime = 1.0f / this.frameRate;
 
             // リールオブジェクトを取得
             this.reels = new ReelModel[3] {
