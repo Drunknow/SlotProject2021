@@ -75,6 +75,18 @@ namespace SlotProject
             this.reels[(int)reelType].StopSpinning();
         }
 
+        // リールが全て停止しているか？
+        public bool IsAllReelStop()
+        {
+            bool result = true;
+            foreach (ReelModel reel in this.reels)
+            {
+                result = result && !reel.GetIsSpinning();
+            }
+
+            return result;
+        }
+
     }
 
 }
