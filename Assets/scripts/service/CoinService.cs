@@ -6,6 +6,8 @@ namespace SlotProject
     public class CoinService : MonoBehaviour
     {
 
+        private int creditAmount = 3;
+
         [SerializeField] CoinFieldModel creditField;
 
         [SerializeField] CoinFieldModel payoutField;
@@ -13,14 +15,14 @@ namespace SlotProject
         public void Start()
         {
             // コインの初期枚数を指定
-            this.PublishCredit(250);
+            this.PublishCredit(7);
             this.PublishPayout(0);
         }
 
         // クレジットを入れる
         public void InsertCredit()
         {
-            this.creditField.AddCoins(-1);
+            this.creditField.AddCoins(-this.creditAmount);
         }
 
         // Creditフィールドに値を反映
@@ -35,10 +37,10 @@ namespace SlotProject
             this.payoutField.SetCoins(payout);
         }
 
-        // クレジットが空か？
-        public bool IsCreditEmpty()
+        // クレジットを入れれるか？
+        public bool canInsertCredit()
         {
-            return this.creditField.IsEmpty();
+            return this.creditField.GetCoins() >= this.creditAmount;
         }
 
     }

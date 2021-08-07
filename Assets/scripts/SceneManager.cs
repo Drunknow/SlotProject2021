@@ -42,7 +42,7 @@ namespace SlotProject
         // レバーを下げた
         public void HandlePullLever()
         {
-            if (this.reelService.IsAllReelStop() && !this.coinService.IsCreditEmpty())
+            if (this.reelService.IsAllReelStop() && this.coinService.canInsertCredit())
             {
                 this.coinService.InsertCredit();
                 this.reelService.startAll();
