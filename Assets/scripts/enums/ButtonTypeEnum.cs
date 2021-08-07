@@ -1,7 +1,7 @@
 namespace SlotProject
 {
 
-    public enum ButtonType
+    public enum ButtonTypeEnum
     {
 
         LEVER,

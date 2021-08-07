@@ -1,7 +1,7 @@
 namespace SlotProject
 {
 
-    public enum ReelType
+    public enum ReelTypeEnum
     {
 
         LEFT = 0,
