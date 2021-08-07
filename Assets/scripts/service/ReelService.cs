@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace SlotProject
@@ -14,6 +15,10 @@ namespace SlotProject
 
         public void Start()
         {
+            // フレームレートを指定
+            int frameRate = 50;
+            Time.fixedDeltaTime = 1.0f / frameRate;
+
             this.reels = new ReelModel[3] {
                 reelFactory.create(ReelTypeEnum.LEFT),
                 reelFactory.create(ReelTypeEnum.CENTER),
@@ -23,11 +28,18 @@ namespace SlotProject
             // 初期画面の図柄を表示
             foreach (ReelModel reel in this.reels)
             {
-                SymbolTypeEnum[] displayedSymbols = reel.GetSymbols();
-                reel.publishSymbolSprite(this.symbolFactory.create(displayedSymbols[0]), DisplayedSymbolTypeEnum.TOP);
-                reel.publishSymbolSprite(this.symbolFactory.create(displayedSymbols[1]), DisplayedSymbolTypeEnum.CENTER);
-                reel.publishSymbolSprite(this.symbolFactory.create(displayedSymbols[2]), DisplayedSymbolTypeEnum.UNDER);
+                foreach (DisplayedSymbolTypeEnum displayedSymbolType in Enum.GetValues(typeof(DisplayedSymbolTypeEnum)))
+                {
+                    reel.publishSymbolSprite(this.symbolFactory.create(reel.GetCurrentSymbol(displayedSymbolType)), displayedSymbolType);
+                }
             }
+        }
+
+        public void FixedUpdate()
+        {
+            // 左リール
+            // 中央リール
+            // 右リール
         }
 
         // 全てのリールを回転させる

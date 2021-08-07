@@ -12,9 +12,14 @@ namespace SlotProject
 
         private bool isSpinning = false;
 
+        private int currentSymbolIndex = 0;
+
         public void SetSymbols(SymbolTypeEnum[] symbols)
         {
             this.symbols = symbols;
+
+            // 初期位置を乱数で決める
+            this.currentSymbolIndex = Random.Range(0, this.symbols.Length);
         }
 
         // 図柄一覧を取得
@@ -41,10 +46,27 @@ namespace SlotProject
             this.isSpinning = false;
         }
 
-        // 回転中か
+        // 回転中？
         public bool GetIsSpinning()
         {
             return this.isSpinning;
+        }
+
+        // 現在表示されている図柄を取得
+        public SymbolTypeEnum GetCurrentSymbol(DisplayedSymbolTypeEnum displayedSymbolType)
+        {
+            int targetIndex = (this.currentSymbolIndex) + ((int)displayedSymbolType - 1) % this.symbols.Length;
+            return this.symbols[targetIndex];
+        }
+
+        // 1フレーム分回転させる
+        public void spinNextFrame()
+        {
+            if (this.GetIsSpinning())
+            {
+                this.currentSymbolIndex = (this.currentSymbolIndex + 1) % this.symbols.Length;
+
+            }
         }
 
         // 図柄のspriteを画面上に反映させる
