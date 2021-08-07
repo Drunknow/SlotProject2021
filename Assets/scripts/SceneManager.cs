@@ -11,6 +11,8 @@ namespace SlotProject
 
         [SerializeField] CoinService coinService;
 
+        [SerializeField] SoundEffectService soundEffectService;
+
         [SerializeField] ButtonTypeEnum buttonType;
 
         public void Start()
@@ -44,6 +46,7 @@ namespace SlotProject
         {
             if (this.reelService.IsAllReelStop() && this.coinService.canInsertCredit())
             {
+                this.soundEffectService.PlayLeverSound();
                 this.coinService.InsertCredit();
                 this.reelService.startAll();
             }
@@ -52,6 +55,7 @@ namespace SlotProject
         // 左ボタンを押した
         public void HandlePushLeftButton()
         {
+            this.soundEffectService.PlayButtonSound();
             this.reelService.StopSpinning(ReelTypeEnum.LEFT);
             this.coinService.GivePayout(this.reelService.GetObtainedSymbol());
         }
@@ -59,6 +63,7 @@ namespace SlotProject
         // 中央ボタンを押した
         public void HandlePushCenterButton()
         {
+            this.soundEffectService.PlayButtonSound();
             this.reelService.StopSpinning(ReelTypeEnum.CENTER);
             this.coinService.GivePayout(this.reelService.GetObtainedSymbol());
         }
@@ -66,6 +71,7 @@ namespace SlotProject
         // 右ボタンを押した
         public void HandlePushRightButton()
         {
+            this.soundEffectService.PlayButtonSound();
             this.reelService.StopSpinning(ReelTypeEnum.RIGHT);
             this.coinService.GivePayout(this.reelService.GetObtainedSymbol());
         }
