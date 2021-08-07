@@ -8,7 +8,7 @@ namespace SlotProject.TakiExample
 {
     interface IReelStartable
     {
-        public void StartReel(int target);
+        public void StartReel();
         public void SetStopEvent(Action action);
     }
 }
