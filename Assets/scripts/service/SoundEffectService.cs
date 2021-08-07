@@ -26,6 +26,22 @@ namespace SlotProject
             this.buttonSoundSource.Play();
         }
 
+        // 図柄が揃ったとき
+        public void PlaySymbolSound(SymbolTypeEnum? symbolType)
+        {
+            switch (symbolType)
+            {
+                case SymbolTypeEnum.SEVEN:
+                    this.bigSoundSource.Play();
+                    break;
+                case SymbolTypeEnum.FULLHD:
+                    this.fullhdSoundSource.Play();
+                    break;
+                default:
+                    break;
+            }
+        }
+
         // 7が揃ったとき
         public void PlayBigSound()
         {

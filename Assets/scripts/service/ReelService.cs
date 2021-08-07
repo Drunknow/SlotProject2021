@@ -19,7 +19,7 @@ namespace SlotProject
         public void Start()
         {
             // フレームレートを指定
-            int frameRate = 25;
+            int frameRate = 3;
             Time.fixedDeltaTime = 1.0f / frameRate;
 
             // リールオブジェクトを取得

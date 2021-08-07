@@ -30,18 +30,18 @@ namespace SlotProject
                     this.HandlePullLever();
                     break;
                 case ButtonTypeEnum.LEFT:
-                    this.HandlePushLeftButton();
+                    this.HandlePushButton(ReelTypeEnum.LEFT);
                     break;
                 case ButtonTypeEnum.CENTER:
-                    this.HandlePushCenterButton();
+                    this.HandlePushButton(ReelTypeEnum.CENTER);
                     break;
                 case ButtonTypeEnum.RIGHT:
-                    this.HandlePushRightButton();
+                    this.HandlePushButton(ReelTypeEnum.RIGHT);
                     break;
             }
         }
 
-        // レバーを下げた
+        // レバーを下げたとき
         public void HandlePullLever()
         {
             if (this.reelService.IsAllReelStop() && this.coinService.canInsertCredit())
@@ -52,38 +52,19 @@ namespace SlotProject
             }
         }
 
-        // 左ボタンを押した
-        public void HandlePushLeftButton()
+        // ボタンを押したとき
+        public void HandlePushButton(ReelTypeEnum reelType)
         {
-            if (!this.reelService.IsReelStop(ReelTypeEnum.LEFT))
+            if (!this.reelService.IsReelStop(reelType))
             {
                 this.soundEffectService.PlayButtonSound();
-                this.reelService.StopSpinning(ReelTypeEnum.LEFT);
-                this.coinService.GivePayout(this.reelService.GetObtainedSymbol());
-            }
-        }
+                this.reelService.StopSpinning(reelType);
 
-        // 中央ボタンを押した
-        public void HandlePushCenterButton()
-        {
-            if (!this.reelService.IsReelStop(ReelTypeEnum.CENTER))
-            {
-                this.soundEffectService.PlayButtonSound();
-                this.reelService.StopSpinning(ReelTypeEnum.CENTER);
-                this.coinService.GivePayout(this.reelService.GetObtainedSymbol());
+                // 揃った図柄に応じた処理
+                SymbolTypeEnum? symbol = this.reelService.GetObtainedSymbol();
+                this.coinService.GivePayout(symbol);
+                this.soundEffectService.PlaySymbolSound(symbol);
             }
-        }
-
-        // 右ボタンを押した
-        public void HandlePushRightButton()
-        {
-            if (!this.reelService.IsReelStop(ReelTypeEnum.RIGHT))
-            {
-                this.soundEffectService.PlayButtonSound();
-                this.reelService.StopSpinning(ReelTypeEnum.RIGHT);
-                this.coinService.GivePayout(this.reelService.GetObtainedSymbol());
-            }
-
         }
 
     }
