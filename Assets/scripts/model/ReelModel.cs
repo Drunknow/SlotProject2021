@@ -55,22 +55,18 @@ namespace SlotProject
         // 現在表示されている図柄を取得
         public SymbolTypeEnum GetCurrentSymbol(DisplayedSymbolTypeEnum displayedSymbolType)
         {
-            int targetIndex = (this.currentSymbolIndex) + ((int)displayedSymbolType - 1) % this.symbols.Length;
-            return this.symbols[targetIndex];
+            int targetIndex = this.currentSymbolIndex + (int)displayedSymbolType - 1;
+            return this.symbols[(targetIndex + this.GetLength()) % this.GetLength()];
         }
 
         // 1フレーム分回転させる
-        public void spinNextFrame()
+        public void SpinNextFrame()
         {
-            if (this.GetIsSpinning())
-            {
-                this.currentSymbolIndex = (this.currentSymbolIndex + 1) % this.symbols.Length;
-
-            }
+            this.currentSymbolIndex = ((this.currentSymbolIndex + this.GetLength()) - 1) % this.GetLength();
         }
 
         // 図柄のspriteを画面上に反映させる
-        public void publishSymbolSprite(Sprite sprite, DisplayedSymbolTypeEnum displayedSymbolType)
+        public void PublishSymbolSprite(Sprite sprite, DisplayedSymbolTypeEnum displayedSymbolType)
         {
             GameObject targetGameObject = this.displayedSymbols[(int)displayedSymbolType];
             SpriteRenderer spriteRenderer = targetGameObject.GetComponent<SpriteRenderer>();
