@@ -22,6 +22,9 @@ namespace SlotProject
         // FIXME: サービスが状態保つのはNG
         private bool isPushedLastButton;
 
+        //このフラグからボーナス当選するかもしれないっていうフラグ
+        int CHERRYFLG, STRNGCHERRYFLG, WATERMELONFLG;
+
         public void Start()
         {
             // フレームレート
@@ -122,16 +125,34 @@ namespace SlotProject
         // 揃う図柄を決定する
         private void FixAlignSymbols()
         {
+            UnityEngine.Random.InitState( System.DateTime.Now.Millisecond );
+            int judge = (UnityEngine.Random.Range(0, 65536));
+            Debug.Log(judge);
+            if (0<judge &&  judge < 6553)
+                {
+                this.alignSymbols = new SymbolTypeEnum[]
+                {
+                    SymbolTypeEnum.BAR,
+                    SymbolTypeEnum.BELL,
+                    SymbolTypeEnum.BELL,
+                };               
+            } 
+             else
+                {
+                    this.alignSymbols = new SymbolTypeEnum[]
+                {
+                    SymbolTypeEnum.REPLAY,
+                    SymbolTypeEnum.BELL,
+                    SymbolTypeEnum.BELL,
+                };
+            }
+            
+           
             // FIXME: 揃う図柄を確率から決める
-            this.alignSymbols = new SymbolTypeEnum[]
-            {
-                SymbolTypeEnum.SEVEN,
-                SymbolTypeEnum.SEVEN,
-                SymbolTypeEnum.SEVEN,
-            };
+           
         }
 
-        // 揃っている図柄一覧を取得
+        // 揃っている図柄一覧を取得, (ついでにフラグ管理←怒られそう)
         public List<SymbolTypeEnum> GetObtainedSymbols()
         {
             List<SymbolTypeEnum> obtainedSymbols = new List<SymbolTypeEnum>();
@@ -153,6 +174,9 @@ namespace SlotProject
                 this.reels[(int)ReelTypeEnum.RIGHT].GetCurrentSymbol(DisplayedSymbolTypeEnum.TOP))
             {
                 obtainedSymbols.Add(this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.TOP));
+                if (this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.TOP) == SymbolTypeEnum.WATERMELON){
+                    WATERMELONFLG = 1;
+                }
             }
 
             // 中央段揃い
@@ -162,6 +186,9 @@ namespace SlotProject
                 this.reels[(int)ReelTypeEnum.RIGHT].GetCurrentSymbol(DisplayedSymbolTypeEnum.CENTER))
             {
                 obtainedSymbols.Add(this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.CENTER));
+                if(this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.CENTER) == SymbolTypeEnum.WATERMELON){
+                    WATERMELONFLG = 1;
+                }
             }
 
             // 下段揃い
@@ -171,6 +198,9 @@ namespace SlotProject
                 this.reels[(int)ReelTypeEnum.RIGHT].GetCurrentSymbol(DisplayedSymbolTypeEnum.UNDER))
             {
                 obtainedSymbols.Add(this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.UNDER));
+                if (this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.UNDER) == SymbolTypeEnum.WATERMELON){
+                    WATERMELONFLG = 1;
+                }
             }
 
             // 左斜め揃い（\）
@@ -180,6 +210,9 @@ namespace SlotProject
                 this.reels[(int)ReelTypeEnum.RIGHT].GetCurrentSymbol(DisplayedSymbolTypeEnum.UNDER))
             {
                 obtainedSymbols.Add(this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.TOP));
+                 if (this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.TOP) == SymbolTypeEnum.WATERMELON){
+                    WATERMELONFLG = 1;
+                }
             }
 
             // 右斜め揃い（/）
@@ -189,7 +222,31 @@ namespace SlotProject
                 this.reels[(int)ReelTypeEnum.RIGHT].GetCurrentSymbol(DisplayedSymbolTypeEnum.TOP))
             {
                 obtainedSymbols.Add(this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.UNDER));
+                 if (this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.UNDER) == SymbolTypeEnum.WATERMELON){
+                    WATERMELONFLG = 1;
+                }
             }
+
+            //チェリー
+            if (this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.UNDER) == SymbolTypeEnum.CHERRY
+            )
+            {
+                obtainedSymbols.Add(this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.UNDER));
+                CHERRYFLG = 1;
+            }
+            else if (this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.CENTER) == SymbolTypeEnum.CHERRY
+            )
+            {
+                obtainedSymbols.Add(this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.CENTER));
+                STRNGCHERRYFLG = 1;
+            }
+            else if (this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.TOP) == SymbolTypeEnum.CHERRY
+            )
+            {
+                obtainedSymbols.Add(this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.UNDER));
+                CHERRYFLG = 1;
+            }
+
 
             return obtainedSymbols;
         }
