@@ -159,7 +159,6 @@ namespace SlotProject
             UnityEngine.Random.InitState( System.DateTime.Now.Millisecond );
             int judge = (UnityEngine.Random.Range(0, 65536));
 
-            judge = 1;//ランプテスト用
 
             Debug.Log(judge);
 
