@@ -23,7 +23,11 @@ namespace SlotProject
         private bool isPushedLastButton;
 
         //このフラグからボーナス当選するかもしれないっていうフラグ
-        int CHERRYFLG, STRNGCHERRYFLG, WATERMELONFLG;
+        bool CHERRYFLG, STRNGCHERRYFLG, WATERMELONFLG;
+
+        SlotLineCollection slotLineCollection = new SlotLineCollection();
+
+        int slotLineIdentfier;
 
         public void Start()
         {
@@ -72,6 +76,11 @@ namespace SlotProject
             // 揃う図柄を決定
             this.FixAlignSymbols();
 
+            // 揃う場所を決定
+            UnityEngine.Random.InitState(System.DateTime.Now.Millisecond);
+            slotLineIdentfier = (UnityEngine.Random.Range(0, 5));
+
+
             this.StartSpinning(ReelTypeEnum.LEFT);
             this.StartSpinning(ReelTypeEnum.CENTER);
             this.StartSpinning(ReelTypeEnum.RIGHT);
@@ -93,9 +102,14 @@ namespace SlotProject
                 return;
             }
 
+
+            DisplayedSymbolTypeEnum displayedSymbol = slotLineCollection.slotLineCollection[slotLineIdentfier][(int)reelType];
+
+
+
             // FIXME: フレームレート下げるとワープしてるのがバレバレ
             // 揃う図柄が中央に来るまで待機
-            while (this.reels[(int)reelType].GetCurrentSymbol(DisplayedSymbolTypeEnum.CENTER) != this.alignSymbols[(int)reelType])
+            while (this.reels[(int)reelType].GetCurrentSymbol(displayedSymbol) != this.alignSymbols[(int)reelType])
             {
                 this.reels[(int)reelType].SpinNextFrame();
             }
@@ -125,76 +139,206 @@ namespace SlotProject
         // 揃う図柄を決定する
         private void FixAlignSymbols()
         {
+            int bonus = 81;
+            int bonusAfterWatermeron = 50;
+            int bonusAfterCherry = 100;
+
+            int regular = 56;
+            int regularAfterWatermeron = 100;
+            int regularAfterCherry = 100;
+
+            int middleCharry = 25;
+
+            int bell = 6553;
+            int replay = 4553;
+            int cherry = 5625;
+            int watermeron = 2850;
+
             UnityEngine.Random.InitState( System.DateTime.Now.Millisecond );
             int judge = (UnityEngine.Random.Range(0, 65536));
+
             Debug.Log(judge);
 
-            if (WATERMELONFLG == 1){
-                
-            }
 
-            else if (0<judge &&  judge < 6553)
+            while (true)
+            {
+                if (WATERMELONFLG)
                 {
-                this.alignSymbols = new SymbolTypeEnum[]
-                {
-                    SymbolTypeEnum.BELL,
-                    SymbolTypeEnum.BELL,
-                    SymbolTypeEnum.BELL,
-                };               
-            } 
+                    //ウォーターメロンフラグの時の処理
+                    WATERMELONFLG = false;
+                    break;
+                }
 
-            else if (judge <= 6553 && judge < 11106){
-                this.alignSymbols = new SymbolTypeEnum[]
-                {
-                    SymbolTypeEnum.REPLAY,
-                    SymbolTypeEnum.REPLAY,
-                    SymbolTypeEnum.REPLAY,
-                };      
-            }
-            
-            else if (judge <= 11106 && judge < 16731){
-                this.alignSymbols = new SymbolTypeEnum[]
-                {
-                    SymbolTypeEnum.BAR,
-                    //FIXME: 下のやつは止めた時の図柄とかにしてほしい．これで問題はないけど．
-                    SymbolTypeEnum.REPLAY,
-                    SymbolTypeEnum.REPLAY,
-                };      
-            }
-            
-            else if (judge <= 11106 && judge < 13956){
-                this.alignSymbols = new SymbolTypeEnum[]
-                {
-                    SymbolTypeEnum.WATERMELON,
-                    SymbolTypeEnum.WATERMELON,
-                    SymbolTypeEnum.WATERMELON,
-                };      
-            }
-
-            else if (judge <= 13956 && judge < 13981){
-                this.alignSymbols = new SymbolTypeEnum[]
-                {
-                    SymbolTypeEnum.CHERRY,
-                    //FIXME: 下のやつは止めた時の図柄とかにしてほしい．これで問題はないけど．
-                    SymbolTypeEnum.REPLAY,
-                    SymbolTypeEnum.REPLAY,
-                };      
-            }
-
-
-            else
+                if (judge < bonus)
                 {
                     this.alignSymbols = new SymbolTypeEnum[]
+                    {
+                    SymbolTypeEnum.SEVEN,
+                    SymbolTypeEnum.SEVEN,
+                    SymbolTypeEnum.SEVEN,
+                    };
+                    break;
+                }
+
+                judge -= bonus;
+
+                if (judge < bonusAfterWatermeron)
+                {
+                    this.alignSymbols = new SymbolTypeEnum[]
+                    {
+                    SymbolTypeEnum.SEVEN,
+                    SymbolTypeEnum.SEVEN,
+                    SymbolTypeEnum.SEVEN,
+                    };
+                    break;
+                }
+
+                judge -= bonusAfterWatermeron;
+
+                if (judge < bonusAfterCherry)
+                {
+                    this.alignSymbols = new SymbolTypeEnum[]
+                    {
+                    SymbolTypeEnum.SEVEN,
+                    //FIXME: 下のやつは止めた時の図柄とかにしてほしい．これで問題はないけど．
+                    SymbolTypeEnum.SEVEN,
+                    SymbolTypeEnum.SEVEN,
+                    };
+                    break;
+                }
+                judge -= bonusAfterCherry;
+
+                if (judge < regular)
+                {
+                    this.alignSymbols = new SymbolTypeEnum[]
+                    {
+                    SymbolTypeEnum.BAR,
+                    SymbolTypeEnum.BAR,
+                    SymbolTypeEnum.BAR,
+                    };
+                    break;
+                }
+                judge -= regular;
+
+                if (judge < regularAfterWatermeron)
+                {
+                    this.alignSymbols = new SymbolTypeEnum[]
+                    {
+                    SymbolTypeEnum.BAR,
+                    SymbolTypeEnum.BAR,
+                    SymbolTypeEnum.BAR,
+                    };
+                    break;
+                }
+
+                judge -= regularAfterWatermeron;
+
+                if (judge < regularAfterCherry)
+                {
+                    this.alignSymbols = new SymbolTypeEnum[]
+                    {
+                    SymbolTypeEnum.BAR,
+                    SymbolTypeEnum.BAR,
+                    SymbolTypeEnum.BAR,
+                    };
+                    break;
+                }
+
+                judge -= regularAfterCherry;
+
+
+                if (judge < middleCharry)
+                {
+                    this.alignSymbols = new SymbolTypeEnum[]
+                    {
+                    SymbolTypeEnum.REPLAY,
+                    SymbolTypeEnum.CHERRY,
+                    SymbolTypeEnum.REPLAY,
+                    };
+                    break;
+                }
+
+                judge -= middleCharry;
+
+
+
+                if (judge < bell)
+                {
+                    this.alignSymbols = new SymbolTypeEnum[]
+                    {
+                    SymbolTypeEnum.BELL,
+                    //FIXME: 下のやつは止めた時の図柄とかにしてほしい．これで問題はないけど．
+                    SymbolTypeEnum.BELL,
+                    SymbolTypeEnum.BELL,
+                    };
+                    break;
+                }
+
+                judge -= bell;
+
+
+                if (judge < replay)
+                {
+                    this.alignSymbols = new SymbolTypeEnum[]
+                    {
+                    SymbolTypeEnum.REPLAY,
+                    //FIXME: 下のやつは止めた時の図柄とかにしてほしい．これで問題はないけど．
+                    SymbolTypeEnum.REPLAY,
+                    SymbolTypeEnum.REPLAY,
+                    };
+                    break;
+                }
+
+                judge -= replay;
+
+
+
+                if (judge < cherry)
+                {
+                    this.alignSymbols = new SymbolTypeEnum[]
+                    {
+                    SymbolTypeEnum.CHERRY,
+                    //FIXME: 下のやつは止めた時の図柄とかにしてほしい．これで問題はないけど．
+                    SymbolTypeEnum.CHERRY,
+                    SymbolTypeEnum.CHERRY,
+                    };
+                    break;
+                }
+
+                judge -= cherry;
+
+
+                if (judge < watermeron)
+                {
+                    this.alignSymbols = new SymbolTypeEnum[]
+                    {
+                    SymbolTypeEnum.WATERMELON,
+                    //FIXME: 下のやつは止めた時の図柄とかにしてほしい．これで問題はないけど．
+                    SymbolTypeEnum.WATERMELON,
+                    SymbolTypeEnum.WATERMELON,
+                    };
+                    break;
+                }
+                judge -= watermeron;
+
+
+
+
+                //何物にもなれなかった者の末路
+                this.alignSymbols = new SymbolTypeEnum[]
                 {
                     SymbolTypeEnum.REPLAY,
                     SymbolTypeEnum.BELL,
                     SymbolTypeEnum.BELL,
                 };
+                break;
+
             }
-            
-           
+
+            Debug.Log(judge);
+
             // FIXME: 揃う図柄を確率から決める
-           
+
         }
 
         // 揃っている図柄一覧を取得, (ついでにフラグ管理←怒られそう)
@@ -220,7 +364,7 @@ namespace SlotProject
             {
                 obtainedSymbols.Add(this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.TOP));
                 if (this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.TOP) == SymbolTypeEnum.WATERMELON){
-                    WATERMELONFLG = 1;
+                    WATERMELONFLG = true;
                 }
             }
 
@@ -232,7 +376,8 @@ namespace SlotProject
             {
                 obtainedSymbols.Add(this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.CENTER));
                 if(this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.CENTER) == SymbolTypeEnum.WATERMELON){
-                    WATERMELONFLG = 1;
+                    WATERMELONFLG = true;
+
                 }
             }
 
@@ -244,7 +389,8 @@ namespace SlotProject
             {
                 obtainedSymbols.Add(this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.UNDER));
                 if (this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.UNDER) == SymbolTypeEnum.WATERMELON){
-                    WATERMELONFLG = 1;
+                    WATERMELONFLG = true;
+
                 }
             }
 
@@ -256,7 +402,8 @@ namespace SlotProject
             {
                 obtainedSymbols.Add(this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.TOP));
                  if (this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.TOP) == SymbolTypeEnum.WATERMELON){
-                    WATERMELONFLG = 1;
+                    WATERMELONFLG = true;
+
                 }
             }
 
@@ -268,7 +415,8 @@ namespace SlotProject
             {
                 obtainedSymbols.Add(this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.UNDER));
                  if (this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.UNDER) == SymbolTypeEnum.WATERMELON){
-                    WATERMELONFLG = 1;
+                    WATERMELONFLG = true;
+
                 }
             }
 
@@ -277,19 +425,19 @@ namespace SlotProject
             )
             {
                 obtainedSymbols.Add(this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.UNDER));
-                CHERRYFLG = 1;
+                CHERRYFLG = true;
             }
             else if (this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.CENTER) == SymbolTypeEnum.CHERRY
             )
             {
                 obtainedSymbols.Add(this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.CENTER));
-                STRNGCHERRYFLG = 1;
+                STRNGCHERRYFLG = true;
             }
             else if (this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.TOP) == SymbolTypeEnum.CHERRY
             )
             {
                 obtainedSymbols.Add(this.reels[(int)ReelTypeEnum.LEFT].GetCurrentSymbol(DisplayedSymbolTypeEnum.UNDER));
-                CHERRYFLG = 1;
+                CHERRYFLG = true;
             }
 
 
