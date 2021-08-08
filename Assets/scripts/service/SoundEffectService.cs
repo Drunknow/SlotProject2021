@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SlotProject
@@ -27,18 +28,22 @@ namespace SlotProject
         }
 
         // 図柄が揃ったとき
-        public void PlaySymbolSound(SymbolTypeEnum? symbolType)
+        public void PlaySymbolSound(List<SymbolTypeEnum> symbols)
         {
-            switch (symbolType)
+            foreach (SymbolTypeEnum symbol in symbols)
             {
-                case SymbolTypeEnum.SEVEN:
-                    this.bigSoundSource.Play();
-                    break;
-                case SymbolTypeEnum.FULLHD:
-                    this.fullhdSoundSource.Play();
-                    break;
-                default:
-                    break;
+
+                switch (symbol)
+                {
+                    case SymbolTypeEnum.SEVEN:
+                        this.bigSoundSource.Play();
+                        break;
+                    case SymbolTypeEnum.FULLHD:
+                        this.fullhdSoundSource.Play();
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 

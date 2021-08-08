@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -61,9 +62,9 @@ namespace SlotProject
                 this.reelService.StopSpinning(reelType);
 
                 // 揃った図柄に応じた処理
-                SymbolTypeEnum? symbol = this.reelService.GetObtainedSymbol();
-                this.coinService.GivePayout(symbol);
-                this.soundEffectService.PlaySymbolSound(symbol);
+                List<SymbolTypeEnum> symbols = this.reelService.GetObtainedSymbols();
+                this.coinService.GivePayout(symbols);
+                this.soundEffectService.PlaySymbolSound(symbols);
             }
         }
 

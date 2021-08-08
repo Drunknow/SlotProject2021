@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SlotProject
@@ -53,38 +54,44 @@ namespace SlotProject
         }
 
         // ペイアウトを獲得
-        public void GivePayout(SymbolTypeEnum? symbolType)
+        public void GivePayout(List<SymbolTypeEnum> symbols)
         {
-            // FIXME: 各図柄のペイアウトを定義
-            switch (symbolType)
+            int totalPayout = 0;
+
+            foreach (SymbolTypeEnum symbol in symbols)
             {
-                case SymbolTypeEnum.SEVEN:
-                    this.PublishPayout(350);
-                    break;
-                case SymbolTypeEnum.FULLHD:
-                    this.PublishPayout(450);
-                    break;
-                case SymbolTypeEnum.WATERMELON:
-                    this.PublishPayout(8);
-                    break;
-                case SymbolTypeEnum.BAR:
-                    this.PublishPayout(0);
-                    break;
-                case SymbolTypeEnum.REPLAY:
-                    this.AddCredit(this.creditAmount);
-                    break;
-                case SymbolTypeEnum.CHERRY:
-                    this.PublishPayout(4);
-                    break;
-                case SymbolTypeEnum.BELL:
-                    this.PublishPayout(15);
-                    break;
-                case SymbolTypeEnum.TRASH:
-                    this.PublishPayout(0);
-                    break;
-                default:
-                    break;
+                switch (symbol)
+                {
+                    case SymbolTypeEnum.SEVEN:
+                        totalPayout += 350;
+                        break;
+                    case SymbolTypeEnum.FULLHD:
+                        totalPayout += 450;
+                        break;
+                    case SymbolTypeEnum.WATERMELON:
+                        totalPayout += 8;
+                        break;
+                    case SymbolTypeEnum.BAR:
+                        totalPayout += 0;
+                        break;
+                    case SymbolTypeEnum.REPLAY:
+                        this.AddCredit(this.creditAmount);
+                        break;
+                    case SymbolTypeEnum.CHERRY:
+                        totalPayout += 4;
+                        break;
+                    case SymbolTypeEnum.BELL:
+                        totalPayout += 15;
+                        break;
+                    case SymbolTypeEnum.TRASH:
+                        totalPayout += 0;
+                        break;
+                    default:
+                        break;
+                }
             }
+
+            this.PublishPayout(totalPayout);
         }
 
     }
