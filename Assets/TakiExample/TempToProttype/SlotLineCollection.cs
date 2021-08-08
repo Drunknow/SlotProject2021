@@ -1,4 +1,4 @@
-using SlotProject;
+﻿using SlotProject;
 
 public class SlotLineCollection
 {
