@@ -140,11 +140,11 @@ namespace SlotProject
         private void FixAlignSymbols()
         {
             int bonus = 81;
-            int bonusAfterWatermeron = 50;
+            int bonusAfterWatermelon = 50;
             int bonusAfterCherry = 100;
 
             int regular = 56;
-            int regularAfterWatermeron = 100;
+            int regularAfterWatermelon = 100;
             int regularAfterCherry = 100;
 
             int middleCharry = 25;
@@ -162,13 +162,26 @@ namespace SlotProject
 
             while (true)
             {
-                if (WATERMELONFLG)
-                {
-                    //ウォーターメロンフラグの時の処理
-                    WATERMELONFLG = false;
+                
+                if (STRNGCHERRYFLG){
+                    if(judge%2 == 0){
+                        this.alignSymbols = new SymbolTypeEnum[]
+                        {
+                        SymbolTypeEnum.SEVEN,
+                        SymbolTypeEnum.SEVEN,
+                        SymbolTypeEnum.SEVEN,
+                        };
+                    }
+                    else {
+                        this.alignSymbols = new SymbolTypeEnum[]
+                        {
+                        SymbolTypeEnum.FULLHD,
+                        SymbolTypeEnum.FULLHD,
+                        SymbolTypeEnum.FULLHD,
+                        };
+                    }
                     break;
                 }
-
                 if (judge < bonus)
                 {
                     this.alignSymbols = new SymbolTypeEnum[]
@@ -182,7 +195,7 @@ namespace SlotProject
 
                 judge -= bonus;
 
-                if (judge < bonusAfterWatermeron)
+                if (judge < bonusAfterWatermelon && WATERMELONFLG)
                 {
                     this.alignSymbols = new SymbolTypeEnum[]
                     {
@@ -193,9 +206,9 @@ namespace SlotProject
                     break;
                 }
 
-                judge -= bonusAfterWatermeron;
+                judge -= bonusAfterWatermelon;
 
-                if (judge < bonusAfterCherry)
+                if (judge < bonusAfterCherry && CHERRYFLG)
                 {
                     this.alignSymbols = new SymbolTypeEnum[]
                     {
@@ -220,7 +233,7 @@ namespace SlotProject
                 }
                 judge -= regular;
 
-                if (judge < regularAfterWatermeron)
+                if (judge < regularAfterWatermelon && WATERMELONFLG)
                 {
                     this.alignSymbols = new SymbolTypeEnum[]
                     {
@@ -231,9 +244,9 @@ namespace SlotProject
                     break;
                 }
 
-                judge -= regularAfterWatermeron;
+                judge -= regularAfterWatermelon;
 
-                if (judge < regularAfterCherry)
+                if (judge < regularAfterCherry && CHERRYFLG)
                 {
                     this.alignSymbols = new SymbolTypeEnum[]
                     {
@@ -334,6 +347,10 @@ namespace SlotProject
                 break;
 
             }
+
+            WATERMELONFLG = false;
+            CHERRYFLG = false;
+            STRNGCHERRYFLG = false;
 
             Debug.Log(judge);
 
