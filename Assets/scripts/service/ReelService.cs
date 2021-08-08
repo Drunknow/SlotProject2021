@@ -128,16 +128,61 @@ namespace SlotProject
             UnityEngine.Random.InitState( System.DateTime.Now.Millisecond );
             int judge = (UnityEngine.Random.Range(0, 65536));
             Debug.Log(judge);
-            if (0<judge &&  judge < 6553)
+
+            if (WATERMELONFLG == 1){
+                
+            }
+
+            else if (0<judge &&  judge < 6553)
                 {
                 this.alignSymbols = new SymbolTypeEnum[]
                 {
-                    SymbolTypeEnum.BAR,
+                    SymbolTypeEnum.BELL,
                     SymbolTypeEnum.BELL,
                     SymbolTypeEnum.BELL,
                 };               
             } 
-             else
+
+            else if (judge <= 6553 && judge < 11106){
+                this.alignSymbols = new SymbolTypeEnum[]
+                {
+                    SymbolTypeEnum.REPLAY,
+                    SymbolTypeEnum.REPLAY,
+                    SymbolTypeEnum.REPLAY,
+                };      
+            }
+            
+            else if (judge <= 11106 && judge < 16731){
+                this.alignSymbols = new SymbolTypeEnum[]
+                {
+                    SymbolTypeEnum.BAR,
+                    //FIXME: 下のやつは止めた時の図柄とかにしてほしい．これで問題はないけど．
+                    SymbolTypeEnum.REPLAY,
+                    SymbolTypeEnum.REPLAY,
+                };      
+            }
+            
+            else if (judge <= 11106 && judge < 13956){
+                this.alignSymbols = new SymbolTypeEnum[]
+                {
+                    SymbolTypeEnum.WATERMELON,
+                    SymbolTypeEnum.WATERMELON,
+                    SymbolTypeEnum.WATERMELON,
+                };      
+            }
+
+            else if (judge <= 13956 && judge < 13981){
+                this.alignSymbols = new SymbolTypeEnum[]
+                {
+                    SymbolTypeEnum.CHERRY,
+                    //FIXME: 下のやつは止めた時の図柄とかにしてほしい．これで問題はないけど．
+                    SymbolTypeEnum.REPLAY,
+                    SymbolTypeEnum.REPLAY,
+                };      
+            }
+
+
+            else
                 {
                     this.alignSymbols = new SymbolTypeEnum[]
                 {
