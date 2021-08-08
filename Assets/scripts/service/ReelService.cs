@@ -16,6 +16,9 @@ namespace SlotProject
 
         private ReelModel[] reels;
 
+        // 揃う図柄一覧（各リールの中央に揃う）
+        private SymbolTypeEnum[] alignSymbols;
+
         // FIXME: サービスが状態保つのはNG
         private bool isPushedLastButton;
 
@@ -63,6 +66,9 @@ namespace SlotProject
         // 全てのリールを回転させる
         public void startAll()
         {
+            // 揃う図柄を決定
+            this.FixAlignSymbols();
+
             this.StartSpinning(ReelTypeEnum.LEFT);
             this.StartSpinning(ReelTypeEnum.CENTER);
             this.StartSpinning(ReelTypeEnum.RIGHT);
@@ -82,6 +88,13 @@ namespace SlotProject
             if (this.IsAllReelStop())
             {
                 return;
+            }
+
+            // FIXME: フレームレート下げるとワープしてるのがバレバレ
+            // 揃う図柄が中央に来るまで待機
+            while (this.reels[(int)reelType].GetCurrentSymbol(DisplayedSymbolTypeEnum.CENTER) != this.alignSymbols[(int)reelType])
+            {
+                this.reels[(int)reelType].SpinNextFrame();
             }
 
             this.reels[(int)reelType].StopSpinning();
@@ -106,7 +119,19 @@ namespace SlotProject
             return !this.reels[(int)reelType].GetIsSpinning();
         }
 
-        // 揃っている図柄を取得
+        // 揃う図柄を決定する
+        private void FixAlignSymbols()
+        {
+            // FIXME: 揃う図柄を確率から決める
+            this.alignSymbols = new SymbolTypeEnum[]
+            {
+                SymbolTypeEnum.SEVEN,
+                SymbolTypeEnum.SEVEN,
+                SymbolTypeEnum.SEVEN,
+            };
+        }
+
+        // 揃っている図柄一覧を取得
         public List<SymbolTypeEnum> GetObtainedSymbols()
         {
             List<SymbolTypeEnum> obtainedSymbols = new List<SymbolTypeEnum>();
