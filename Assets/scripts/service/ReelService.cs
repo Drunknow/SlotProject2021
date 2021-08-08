@@ -7,6 +7,8 @@ namespace SlotProject
 
     public class ReelService : MonoBehaviour
     {
+        [SerializeField] RCCrump turnlight;
+
 
         [SerializeField] int frameRate;
 
@@ -157,11 +159,14 @@ namespace SlotProject
             UnityEngine.Random.InitState( System.DateTime.Now.Millisecond );
             int judge = (UnityEngine.Random.Range(0, 65536));
 
+            judge = 1;//ランプテスト用
+
             Debug.Log(judge);
 
 
             while (true)
             {
+                turnlight.TurnOnRCCrump();
                 
                 if (STRNGCHERRYFLG){
                     if(judge%2 == 0){
@@ -258,7 +263,7 @@ namespace SlotProject
                 }
 
                 judge -= regularAfterCherry;
-
+                turnlight.TurnOffRCCrump();
 
                 if (judge < middleCharry)
                 {
