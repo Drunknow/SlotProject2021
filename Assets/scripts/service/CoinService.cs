@@ -63,7 +63,7 @@ namespace SlotProject
                 switch (symbol)
                 {
                     case SymbolTypeEnum.SEVEN:
-                        totalPayout += 300;
+                        totalPayout += 350;
                         break;
                     case SymbolTypeEnum.FULLHD:
                         totalPayout += 450;
@@ -72,7 +72,7 @@ namespace SlotProject
                         totalPayout += 8;
                         break;
                     case SymbolTypeEnum.BAR:
-                        totalPayout += 100;
+                        totalPayout += 0;
                         break;
                     case SymbolTypeEnum.REPLAY:
                         this.AddCredit(this.creditAmount);
