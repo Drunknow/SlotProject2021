@@ -7,6 +7,7 @@ namespace SlotProject
 
     public class SceneManager : MonoBehaviour
     {
+        
 
         [SerializeField] ReelService reelService;
 
@@ -16,13 +17,34 @@ namespace SlotProject
 
         [SerializeField] ButtonTypeEnum buttonType;
 
+        public SerialHandler serialHandler;
+
         public void Start()
         {
             // ボタンを押した時に実行するメソッドを設定
             this.GetComponent<Button>().onClick.AddListener(HandlePushButton);
+
+            //serialReceive = this.GetComponent<SerialReceive>();
+            Debug.Log(gameObject.name);
+            Debug.Log(serialHandler);
+            Debug.Log(serialHandler.message_);
+            if (serialHandler.message_ == "1"){
+                this.HandlePullLever();
+            }
+
         }
 
-        // 何かしらのボタンが押された
+        void Update(){
+            if (buttonType == ButtonTypeEnum.LEVER){
+                Debug.Log(serialHandler.message_);
+                    if (serialHandler.message_ == "1"){
+                this.HandlePullLever();
+                    }
+
+            }
+        }
+
+        // ボタンが押された
         public void HandlePushButton()
         {
             switch (this.buttonType)

@@ -899,7 +899,6 @@ GameObject:
   - component: {fileID: 854081171}
   - component: {fileID: 854081170}
   - component: {fileID: 854081169}
-  - component: {fileID: 854081172}
   - component: {fileID: 854081173}
   m_Layer: 5
   m_Name: Lever
@@ -1009,18 +1008,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 854081167}
   m_CullTransparentMesh: 1
---- !u!114 &854081172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 854081167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 504f6fdcfdb404dd8b30ae9c51e442e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &854081173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1037,6 +1024,7 @@ MonoBehaviour:
   coinService: {fileID: 129813221}
   soundEffectService: {fileID: 2135076742}
   buttonType: 0
+  serialHandler: {fileID: 1838105708}
 --- !u!1 &972568606
 GameObject:
   m_ObjectHideFlags: 0
@@ -1279,6 +1267,7 @@ MonoBehaviour:
   coinService: {fileID: 129813221}
   soundEffectService: {fileID: 2135076742}
   buttonType: 1
+  serialHandler: {fileID: 1838105708}
 --- !u!1 &1055592482
 GameObject:
   m_ObjectHideFlags: 0
@@ -1626,6 +1615,7 @@ MonoBehaviour:
   coinService: {fileID: 129813221}
   soundEffectService: {fileID: 2135076742}
   buttonType: 3
+  serialHandler: {fileID: 1838105708}
 --- !u!1 &1356162813
 GameObject:
   m_ObjectHideFlags: 0
@@ -2228,6 +2218,67 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1838105706
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1838105709}
+  - component: {fileID: 1838105708}
+  - component: {fileID: 1838105707}
+  m_Layer: 0
+  m_Name: AruduinoMaster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1838105707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838105706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5b62feb44668407f953588809119382, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serialHandler: {fileID: 1838105708}
+  data: []
+--- !u!114 &1838105708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838105706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e53eb6b38c1d04927bf3be3124e2e5a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portName: /dev/cu.usbserial-0001
+  baudRate: 9600
+  message_: 
+--- !u!4 &1838105709
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838105706}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.550231, y: 0.76542705, z: -0.9516127}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1877391724
 GameObject:
   m_ObjectHideFlags: 0
@@ -2365,6 +2416,7 @@ MonoBehaviour:
   coinService: {fileID: 129813221}
   soundEffectService: {fileID: 2135076742}
   buttonType: 2
+  serialHandler: {fileID: 1838105708}
 --- !u!1 &1911460581
 GameObject:
   m_ObjectHideFlags: 0
