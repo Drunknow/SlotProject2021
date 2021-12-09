@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 namespace SlotProject
 {
@@ -19,6 +20,8 @@ namespace SlotProject
 
         public SerialHandler serialHandler;
 
+        
+
         public void Start()
         {
             // ボタンを押した時に実行するメソッドを設定
@@ -28,20 +31,22 @@ namespace SlotProject
             Debug.Log(gameObject.name);
             Debug.Log(serialHandler);
             Debug.Log(serialHandler.message_);
-            if (serialHandler.message_ == "1"){
+            /*if (serialHandler.message_ == "1"){
                 this.HandlePullLever();
-            }
+            }*/
 
         }
 
         void Update(){
-            if (buttonType == ButtonTypeEnum.LEVER){
+            //if (buttonType == ButtonTypeEnum.LEVER){
                 Debug.Log(serialHandler.message_);
                     if (serialHandler.message_ == "1"){
-                this.HandlePullLever();
-                    }
-
-            }
+                        this.HandlePullLever();
+                        StartCoroutine(DelayMethod(ReelTypeEnum.LEFT,1));
+                        StartCoroutine(DelayMethod(ReelTypeEnum.CENTER,2));
+                        StartCoroutine(DelayMethod(ReelTypeEnum.RIGHT,3));
+                    }   
+            //}
         }
 
         // ボタンが押された
@@ -88,6 +93,12 @@ namespace SlotProject
                 this.coinService.GivePayout(symbols);
                 this.soundEffectService.PlaySymbolSound(symbols);
             }
+        }
+
+        IEnumerator DelayMethod(ReelTypeEnum reelType, int delayTime)
+        {
+            yield return new WaitForSeconds(delayTime);
+            HandlePushButton(reelType);
         }
 
     }
